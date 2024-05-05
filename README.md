@@ -1,39 +1,257 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# **scrambled - anagram word game**
 
-Welcome,
+**scrambled** is an anagram word game in which the player attempts to solve as many anagrams as they can. The player has three lives; they lose a life if they make an incorrect guess. A correct guess allows them to proceed to the next word. The game ends when the three lives are up or when the player decides. The player is then given a summary of the game - how many words they unscrambled - and an invitation to start a new game.
 
-This is the Code Institute student template for Codeanywhere. If you are using Gitpod then you need [this template](https://github.com/Code-Institute-Org/gitpod-full-template) instead.  We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+Have a go! [**scrambled**]()
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Codeanywhere and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **August 30th, 2023**
+![Responsive Screenshot](./assets/readme-images/responsive-screenshot.jpg)
 
-## Codeanywhere Reminders
+## Contents
+1. [**User Experience UX**](#1-user-experience-ux)
+    - [Strategy](#strategy)
+	- [User Stories](#user-stories)
+    - [Site Structure](#site-structure)
+    - [Wireframes](#wireframes)
+    - [Surface](#surface)
+2. [**Features**](#2-features)
+	- [Existing Features](#existing-features)
+		- [Home](#existing-features)
+			- [Navigation bar](#navigation-bar)
+			- [Hero image](#hero-image)
+			- [Footer](#footer)
+		- About
+			- [About us](#about-us)
+			- [FAQs](#faqs)
+		- [Gallery](#gallery-1)
+		- Music
+			- [Media](#media)
+			- [Repertoire](#repertoire)
+		- [Testimonials](#testimonials-1)
+		- [Contact](#contact-1)
+			- [Contact-receipt](#contact-receipt)
+			- [Privacy policy](#privacy-policy)
+	- [Future Features](#future-features)
+3. [**Technology used**](#3-technology-used)
+4. [**Testing**](#4-testing)
+5. [**Deployment**](#5-deployment)
+6. [**Credits**](#6-credits)
+7. [**Acknowledgements**](#7-acknowledgements)
 
-To run a frontend (HTML, CSS, Javascript only) application in Codeanywhere, in the terminal, type:
+# 1. User Experience UX
 
-`python3 -m http.server`
+## Strategy
 
-A button should appear to click: _Open Preview_ or _Open Browser_.
+The aim is to provide a fun game in the style of Countdown's Conundrum round, in which players are given 30-seconds to solve a 9-letter anagram. To make this game more open-ended, the timer element in the Countdown version has been replaced with a system of lives. Players could potentially play indefinitely, as long as they keep correctly guessing the anagrams. The limited number of lives keeps a degree of challenge - players must be careful with their guesses.
 
-To run a frontend (HTML, CSS, Javascript only) application in Codeanywhere with no-cache, you can use this alias for `python3 -m http.server`.
+In contrast to the Conundrum, the length of the anagrams in **scrambled** is randomly varied, from 5 to 9 letters in length. There is also the option to shuffle the order of the letters to provide a fresh perspective. The player can to do this as many times as they like.
 
-`http_server`
+Once a word is correctly guessed, or the player decides to reveal the word (forfeiting a life), a feedback box displays the word and some additional information, including a dictionary definition and example of usage. This is similar to the 'Dictionary Corner' feature of Countdown, and adds an educational aspect to the game.
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+[Back to contents](#contents)
 
-A button should appear to click: _Open Preview_ or _Open Browser_.
+## User stories
 
-In Codeanywhere you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+As a player of the game, I want:
+1. To find out how to play the game
+2. To navigate easily around the game
+3. To have clear feedback on my guesses
+4. To clearly see how many lives I have remaining
+5. To be able to shuffle the letters of the anagram
+6. To be able to end the game at any stage
+7. To have helpful feedback on my guesses
+8. To be protected from accidentally ending the game by clicking on links or the end game button
+9. To receive a summary of each game
+10. To have a running total of the words I have solved
+11. To know more about each unscrambled word
 
-To log into the Heroku toolbelt CLI:
 
-1. Log in to your Heroku account and go to _Account Settings_ in the menu under your avatar.
-2. Scroll down to the _API Key_ and click _Reveal_
-3. Copy the key
-4. In Codeanywhere, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+[Back to contents](#contents)
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
 
----
+## Site Structure
 
-Happy coding!
+The site is structured with three pages:
+
+[*Home*](index.html)
+- The landing page contains the title, a brief description, links to instructions and information about the game, and a button to start a new game.
+
+[*Gameplay*](gameplay.html)
+- The main gameplay page
+- navigated to when users click on 'new game' button on home page
+- Displays the anagram
+- user interaction panel - guess input, buttons for shuffle, reveal/next word and end game
+- feedback panel - displays messages to user, including information about unscrambled words
+
+[*Game over*](game-over.html)
+- Displays a summary of the game just played
+- navigated to once user confirms end game, or the last life is lost
+- contains the new game button which navigates back to the gameplay page
+
+
+[Back to contents](#contents)
+
+## Wireframes
+
+The following wireframes were created in [Balsamiq](https://balsamiq.com/) and include responsive design ideas for Laptop, Tablet and Mobile devices. 
+
+**Home page**
+
+![Home](assets/readme-images/home.png "Opens Home page wireframe as png")  
+
+**Gameplay page**
+
+![Gameplay](assets/readme-images/gameplay.png "Opens Gameplay page wireframe as png")
+
+**Game over page**
+
+![Game over](assets/readme-images/game-over.png "Opens Game over page wireframe as png")
+
+
+[Back to contents](#contents)
+
+
+## Design choices
+
+**Typography**
+
+The fonts were selected from Google Fonts:
+
+- Gabarito
+	- Used for the title
+- Roboto
+	- Used for the display of the scrambled word and for button text
+- Source Sans
+	- Used for the main body of the text. Very easy to read.
+
+All fonts default to sans serif.
+
+**Icons**
+
+Heart icons from [FontAwesome](https://fontawesome.com/) will be used to show the number of lives remaining.
+
+[Back to contents](#contents)
+
+**Colours**
+
+The colour scheme was chosen to give a high contrast and clean effect with splashes of colour for icons and links.
+
+![Colour palette](/assets/readme-images/colour-palette.png)
+
+**Styling**
+
+- The aim is to make the page as intuitive to use as possible, and to keep the main gameplay buttons and features clearly organised. On tablet and laptop viewports, user input features will be kept on the left of the screen and feedback will be on the right. On mobile devices, the user input and buttons will be just below the displayed word, and feedback below.
+
+
+[Back to contents](#contents)
+
+
+## 2. Features
+
+The site is intended to be easy to navigate around and intuitive to use. Common pages, terminology and icons are used to help the user find their way around easily, and high contrast between font and background has been used to make the text immediately clear.
+
+## Existing Features
+
+### Title and gameplay instructions
+
+[Back to contents](#contents)
+
+### Landing page
+
+[Back to contents](#contents)
+
+### Gameplay page
+
+### User input section
+
+### Feedback section
+
+### Game over page
+
+[Back to contents](#contents)
+
+## Future features
+
+- Hint function
+- User selects difficulty setting
+- Option for timed game
+
+[Back to contents](#contents)
+
+## 3. Technology used
+
+- The wireframes were created using [Balsamiq](https://balsamiq.com/)
+- The structure of the site was written in [HTML5](https://html.spec.whatwg.org/)
+- The site was styled using [CSS](https://www.w3.org/Style/CSS/Overview.en.html)
+- JavaScript
+- The site was developed in [Gitpod](https://www.gitpod.io/) using a Github template from [Code Institute](https://github.com/Code-Institute-Org/ci-full-template)
+- [Github](https://github.com/) was used for version control and for hosting
+- [Google Chrome Developer Tools](https://developer.chrome.com/docs/devtools) were used throughout development and for testing
+
+[Back to contents](#contents)
+
+## 4. Testing
+
+For full testing details, including code validation, bugs, user story tests and developer tools tests, please see the separate [Testing](/TESTING.md) document.
+
+
+## 5. Deployment
+
+### To deploy the project on Github Pages
+
+  1. In the GitHub repository, go to Settings.
+  2. In Settings, navigate to the Pages tab on the left hand side.
+  3. Under Source, select the branch to master, then click save.
+  4. Once the master branch has been selected, the page will be automatically refreshed with a detailed ribbon display to indicate the successful deployment.
+
+  ![Github deploy](/assets/readme-images/github-deploy.jpg)
+
+  The live link to the repository can be found [here](...)
+
+
+  ### To fork the repository on Github
+
+A copy of the GitHub Repository can be made by forking the GitHub account. This copy can be viewed and changes can be made to the copy without affecting the original repository. Take the following steps to fork the repository:
+
+1. Log in to GitHub and locate the repository.
+2. On the right hand side of the page inline with the repository name is a button called 'Fork'. Click on the button to create a copy of the original repository in your GitHub Account.
+
+![Github fork](/assets/readme-images/github-fork.jpg)
+
+### To clone the project
+
+1. Under the repository’s name, click on the code tab.
+2. In the 'Clone with HTTPS' section, click on the clipboard icon to copy the given URL.
+3. In your IDE, open Git Bash.
+4. Change the current working directory to the location where you want the cloned directory to be made.
+5. Type 'git clone', and then paste the URL copied from GitHub.
+6. Press enter and the local clone will be created.
+
+![Github clone](/assets/readme-images/github-clone.jpg)
+
+[Back to contents](#contents)
+
+## 6. Credits
+
+### Code
+
+
+
+### Content
+
+- Fonts from [Google Fonts](https://fonts.google.com/)
+- Icons from [FontAwesome](https://fontawesome.com/)
+- Colour palette created with [Coolors](https://coolors.co/)
+
+### Media
+
+
+
+[Back to contents](#contents)
+
+## 7. Acknowledgements
+
+This game was developed as my second Milestone Project for the Full Stack Software Developer Diploma at Code Institute. I would like to thank my mentor, [Precious Ijege](https://www.linkedin.com/in/precious-ijege-908a00168/), and all at Code Institute for their help and support.
+
+Mark Sambell 2024
+
+[Back to contents](#contents)
