@@ -1,0 +1,28 @@
+body {
+    background-color: #93938e;
+    font-family: "Roboto", sans-serif;
+}
+
+h1 {
+    font-size: 4rem;
+    background-color: #fff;
+    border: solid 2px #353535;
+    letter-spacing: 1rem;
+    text-align: center;
+}
+
+h2 {
+    font-family: "Gabarito", sans-serif;
+    font-size: 2rem;
+    color: #353535;
+}
+
+h3 {
+    font-family: "Source Sans", sans-serif;
+    font-size: .75rem;
+    color: #353535;
+}
+
+.word-display {
+    /* add padding */
+}
