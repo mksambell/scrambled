@@ -38,36 +38,32 @@ h3 {
 
 /* ------------------------------------ Main section */
 
-.main {
+#main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
     height: 80vh;
-    clear: both;
-    padding: 3% 10%;
+    padding: 5% 10%;
 }
 
-.word-display {
-    display: flex;
-    justify-content: center;
+#word-display {
+    
 }
 
-.description {
-    display: flex;
-    justify-content: center;
+#description {
     margin-top: 2%;
 }
 
-.description h2 {
+#description h2 {
     font-size: 200%;
 }
 
-.logo {
-    display: flex;
-    justify-content: center;
+#logo {
     margin: 1rem 0;
 }
 
-.button-container {
-    display: flex;
-    justify-content: center;
+#button-container {
 }
 
 #new-game-button {

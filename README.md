@@ -242,7 +242,7 @@ A copy of the GitHub Repository can be made by forking the GitHub account. This 
 - Fonts from [Google Fonts](https://fonts.google.com/)
 - Icons from [FontAwesome](https://fontawesome.com/)
 - Colour palette created with [Coolors](https://coolors.co/)
-- Logo image created by 
+- Logo image created by <a href="https://www.vecteezy.com/free-vector/tangle">Tangle Vectors by Vecteezy</a> Svitlana Panteley
 
 ### Media
 
