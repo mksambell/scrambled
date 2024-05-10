@@ -186,6 +186,7 @@ The site is intended to be easy to navigate around and intuitive to use. Common 
 - The site was developed in [Gitpod](https://www.gitpod.io/) using a Github template from [Code Institute](https://github.com/Code-Institute-Org/ci-full-template)
 - [Github](https://github.com/) was used for version control and for hosting
 - [Google Chrome Developer Tools](https://developer.chrome.com/docs/devtools) were used throughout development and for testing
+- Logo was edited using [Adobe Express](https://www.adobe.com/express/feature/image/remove-background)
 
 [Back to contents](#contents)
 
@@ -241,6 +242,7 @@ A copy of the GitHub Repository can be made by forking the GitHub account. This 
 - Fonts from [Google Fonts](https://fonts.google.com/)
 - Icons from [FontAwesome](https://fontawesome.com/)
 - Colour palette created with [Coolors](https://coolors.co/)
+- Logo image created by 
 
 ### Media
 
