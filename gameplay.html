@@ -27,7 +27,7 @@
 
 <body>
     <header>
-        <div class="container-fluid header-container">
+        <div id="header-container" class="container-fluid">
             <div class="row">
                 <div class="col-sm-7 title-link">
                     <a href="index.html">
@@ -35,20 +35,22 @@
                     </a>
                 </div>
                 <div class="col-sm-5">
-                    <h3 id="instructions">how to play</h3>
+                    <h3 id="instructions-link">how to play</h3>
                 </div>
             </div>
         </div>
     </header>
 
-    <div class="container-fluid main-container">
+    <div id="anagram-container" class="container-fluid">
         <div class="row">
-            <div id="word-display" class="d-flex justify-content-center">
+            <div class="d-flex justify-content-center">
                 <h1 id="anagram">scrambled</h1>
             </div>
         </div>
+    </div>
+    <div id="gameplay-container" class="container-fluid">
         <div class="row">
-            <div id="user-input-column" class="col-sm-5 col-xs-10 mx-auto">
+            <div id="user-input-column" class="col-sm-5 col-10 mx-auto">
                 <div class="row">
                     <div id="guess-box" class="col-12 text-center">
                         <label for="guess">Guess:</label>
@@ -63,32 +65,34 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-6 text-center">
+                    <div class="col-12 text-center">
                         <button>shuffle</button>
                         <button>reveal</button>
                     </div>
                 </div>
-
-
-
             </div>
-            <div id="feedback-column" class="col-sm-5 col-xs-10 mx-auto">
-                This contains the feedback to the user
+            <div id="feedback-column" class="col-sm-5 col-10 mx-auto">
+                Click 'start game' to display the first anagram
             </div>
         </div>
-        <div class="text-center">
-            <button id="start-end-button">start</button>
+    </div>
+    
+    <div id="game-button-container" class="container-fluid">
+        <div class="row">
+            <div class="text-center">
+                <button id="start-end-button">start game</button>
+            </div>
         </div>
     </div>
 
     <footer>
-        <div class="container-fluid footer-container">
+        <div id="footer-container" class="container-fluid">
             <div class="row">
-                <div class="col-sm">
+                <div class="col-sm ">
                     <h4 id="about-link">about</h4>
                 </div>
                 <div class="col-sm">
-                    <h4 id="footer-text">&#169; 2024 Mark Sambell</h4>
+                    <h4 id="copyright">&#169; 2024 Mark Sambell</h4>
                 </div>
             </div>
         </div>

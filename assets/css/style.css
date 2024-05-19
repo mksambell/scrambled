@@ -4,17 +4,44 @@ body {
     color: #353535;
 }
 
-/* ------------------------------------   Header */
+h1, h2, h3, h4 {
+    margin: 0;
+}
 
-.header-container {
-    margin-top: 5px;
-    line-height: 2.5rem;
+/* ------------------------------------   Page structure */
+
+#header-container {
+    padding: .5rem;
+    height: 10vh;
     max-width: 1600px;
 }
 
+#anagram-container {
+    max-width: 1600px;
+    height: 10vh;
+    margin: 5vh 0;
+}
+
+#gameplay-container {
+    max-width: 1600px;
+    height: 45vh;
+}
+
+#game-button-container {
+    max-width: 1600px;
+    height: 20vh;
+}
+
+#footer-container {
+    max-width: 1600px;
+    height: 5vh;
+}
+
+/* ------------------------------------   Header */
+
 #title-logo {
     font-size: 250%;
-    margin-left: .5rem;
+    padding-left: .5rem;
 }
 
 .title-link a {
@@ -22,33 +49,27 @@ body {
     color: #353535;
 }
 
-#instructions {
+#instructions-link {
     font-size: 150%;
     font-weight: 400;
     text-align: right;
-    margin-top: 1rem;
-    margin-right: .5rem;
+    padding-top: 1rem;
+    padding-right: .5rem;
 }
 
-
-/* ------------------------------------   Main page */
-
-.main-container {
-    max-width: 1600px;
-}
-
-#word-display {
-    margin: 4vw 0;
-}
+/* ------------------------------------   Anagram display */
 
 #anagram {
     text-transform: uppercase;
     background-color: #fff;
     border: solid 3px #353535;
     letter-spacing: 1rem;
-    font-size: 5vw;
+    font-size: 8vh;
     padding-left: 1rem;
 }
+
+
+/* ------------------------------------   Landing page display */
 
 #logo {
     margin-top: 5px;
@@ -66,7 +87,7 @@ body {
     border-radius: 5px;
     background-color: #ffb30f;
     margin-top: 20px;
-    margin-bottom: 4vw;
+    margin-bottom: 4vh;
 }
 
 #new-game-button a {
@@ -74,20 +95,20 @@ body {
     color: #353535;
 }
 
-/* ------------------------------------   Gameplay page */
+/* ------------------------------------   Gameplay sections */
 
 
 #user-input-column, #feedback-column {
     border: solid 2px #353535;
     border-radius: 5px;
-    margin-bottom: 40px;
     padding: 10px;
+    height: 35vh;
 }
 
 #lives, i {
     font-size: 2rem;
     margin: 3px;
-    color: red;
+    color: #db324b;
 }
 
 #start-end-button {
@@ -102,19 +123,18 @@ body {
 
 /* ------------------------------------   Footer */
 
-.footer-container {
-    max-width: 1600px;
-}
-
-#footer-text {
-    font-size: 1rem;
+#copyright {
+    font-size: 100%;
     text-align: right;
     margin-right: .5rem;
+    font-weight: 400;
 }
 
 #about-link {
     text-align: left;
     margin-left: .5rem;
+    font-weight: 400;
+    font-size: 130%;
 }
 
 /* ------------------------------------   Media queries */
@@ -122,15 +142,58 @@ body {
 /* For mobile screens of 576px width and less */
 
 @media screen and (max-width: 576px) {
-    #title-logo, #instructions {
+    #title-logo, 
+    #instructions-link,
+    #about-link,
+    #copyright {
         text-align: center;
     }
 
     #title-logo {
-        margin: 0;
+        padding: 0;
+        font-size: 200%;
     }
 
-    #instructions {
-        margin-right: 0;s
+    #instructions-link {
+        padding-right: 0;
+        padding-top: 0;
+        font-size: 100%;
     }
+
+    #about-link,
+    #copyright {
+        font-size: 100%;
+    }
+
+    #header-container {
+        height: 10vh;
+    }
+
+    #anagram-container {
+        margin: 3vh 0 2vh 0;
+    }
+
+    #gameplay-container {
+        height: 55vh;
+    }
+    
+    #game-button-container {
+        height: 15vh;
+    }
+
+    #anagram {
+        font-size: 5vh;
+        letter-spacing: .5rem;
+        padding-left: .5rem;
+    }
+
+    #user-input-column, #feedback-column {
+        height: 25vh;
+    }
+
+    #feedback-column {
+        height: 28vh;
+        margin-top: 2vh;
+    }
+
 }
