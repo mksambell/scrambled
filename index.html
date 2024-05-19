@@ -24,7 +24,7 @@
 
 <body>
     <header>
-        <div class="container-fluid header-container">
+        <div id="header-container" class="container-fluid">
             <div class="row">
                 <div class="col-sm-7 title-link">
                     <a href="index.html">
@@ -32,40 +32,49 @@
                     </a>
                 </div>
                 <div class="col-sm-5">
-                    <h3 id="instructions">how to play</h3>
+                    <h3 id="instructions-link">how to play</h3>
                 </div>
             </div>
         </div>
     </header>
 
-    <div class="container-fluid main-container">
+    <div id="anagram-container" class="container-fluid">
         <div class="row">
-            <div id="word-display" class="d-flex justify-content-center">
+            <div class="d-flex justify-content-center">
                 <h1 id="anagram">scrambled</h1>
             </div>
-            <div class="text-center">
+        </div>
+    </div>
+
+    <div id="gameplay-container" class="container-fluid">
+        <div class="row">
+            <div id="description-container" class="text-center">
                 <h3 id="description">anagram word game</h3>
             </div>
-            <div class="text-center">
+            <div id="logo-container" class="text-center">
                 <img id="logo" class="img-fluid mx-auto" src="assets/images/scribble.png" alt="scrambled logo">
             </div>
+        </div>
+    </div>
 
+    <div id="game-button-container" class="container-fluid">
+        <div class="row">
             <div class="text-center">
-                <button id="new-game-button">
-                    <a href="gameplay.html">new game</a></button>
+                <button id="main-game-button">
+                    <a href="gameplay.html">new game</a>
+                </button>
             </div>
-
         </div>
     </div>
 
     <footer>
-        <div class="container-fluid footer-container">
+        <div id="footer-container" class="container-fluid">
             <div class="row">
                 <div class="col-sm">
                     <h4 id="about-link">about</h4>
                 </div>
                 <div class="col-sm">
-                    <h4 id="footer-text">&#169; 2024 Mark Sambell</h4>
+                    <h4 id="copyright">&#169; 2024 Mark Sambell</h4>
                 </div>
             </div>
         </div>

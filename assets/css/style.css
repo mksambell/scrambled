@@ -2,6 +2,8 @@ body {
     font-family: "Gabarito", sans-serif;
     background-color: #a9a9a6;
     color: #353535;
+    max-width: 1600px;
+    margin: 0 auto;
 }
 
 h1, h2, h3, h4 {
@@ -13,28 +15,31 @@ h1, h2, h3, h4 {
 #header-container {
     padding: .5rem;
     height: 10vh;
-    max-width: 1600px;
 }
 
 #anagram-container {
-    max-width: 1600px;
     height: 10vh;
     margin: 5vh 0;
 }
 
 #gameplay-container {
-    max-width: 1600px;
     height: 45vh;
 }
 
 #game-button-container {
-    max-width: 1600px;
     height: 20vh;
 }
 
 #footer-container {
-    max-width: 1600px;
     height: 5vh;
+}
+
+#description-container {
+    height: 10vh;
+}
+
+#logo-container {
+    height: 35vh;
 }
 
 /* ------------------------------------   Header */
@@ -72,31 +77,26 @@ h1, h2, h3, h4 {
 /* ------------------------------------   Landing page display */
 
 #logo {
-    margin-top: 5px;
-    width: 20%;
+    height: 90%;
 }
 
 #description {
     font-weight: 400;
-    margin-top: 5px;
 }
 
-#new-game-button {
+#main-game-button {
     font-size: 1.5rem;
     border: solid 3px #353535;
     border-radius: 5px;
     background-color: #ffb30f;
-    margin-top: 20px;
-    margin-bottom: 4vh;
 }
 
-#new-game-button a {
+#main-game-button a {
     text-decoration: none;
     color: #353535;
 }
 
 /* ------------------------------------   Gameplay sections */
-
 
 #user-input-column, #feedback-column {
     border: solid 2px #353535;
@@ -110,16 +110,6 @@ h1, h2, h3, h4 {
     margin: 3px;
     color: #db324b;
 }
-
-#start-end-button {
-    font-size: 1.5rem;
-    border: solid 3px #353535;
-    border-radius: 5px;
-    background-color: #ffb30f;
-    margin-top: 20px;
-    margin-bottom: 4vw;
-}
-
 
 /* ------------------------------------   Footer */
 
@@ -178,7 +168,8 @@ h1, h2, h3, h4 {
     }
     
     #game-button-container {
-        height: 15vh;
+        height: 12vh;
+        margin-top: 3vh;
     }
 
     #anagram {
