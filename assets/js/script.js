@@ -1,4 +1,4 @@
-function newGame() {
+function newGame(event) {
 
     // replaces description and logo on landing page with gameplay section
     let gameplaySection = document.getElementById("gameplay-container");
@@ -26,8 +26,6 @@ function newGame() {
                 </div>
             </div>
             <div id="feedback-column" class="col-sm-5 col-10 mx-auto">
-                Click 'how to play' to learn the game rules
-                
                 Click 'start game' to display the first anagram
             </div>
         </div>
@@ -62,7 +60,41 @@ function startGame() {
     // adds event listener to 'end game' button
     let endGameButton = document.getElementById('end-game-button');
     endGameButton.addEventListener('click', endGame);
+
+    displayWord();
 }
+
+function displayWord() {
+    // displays the word in the anagram display
+
+    let anagram = getWord();
+    document.getElementById('anagram').innerHTML = anagram;
+}
+
+function getWord() {
+    let length = Math.floor(Math.random() * (10 - 5) + 5);
+    let URL = `https://random-word-api.herokuapp.com/word?length=${length}`;
+
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', URL)
+    xhr.send()
+
+    xhr.onreadystatechange = () {
+        if(this.readyState == 4 && this.status == 200) {
+            word = this.responseText.slice(2, length + 2);
+        }
+        // else handle if the API doesn't return anything
+    }
+
+    return word;
+}
+
+function shuffle(word) {
+    // returns shuffled version of word passed in from getWord()
+    return word; 
+}
+
+
 
 function endGame() {
     // checks if user wants to end game
