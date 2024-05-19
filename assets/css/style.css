@@ -84,16 +84,13 @@ h1, h2, h3, h4 {
     font-weight: 400;
 }
 
-#main-game-button {
+#new-game-button,
+#start-game-button,
+#end-game-button {
     font-size: 1.5rem;
     border: solid 3px #353535;
     border-radius: 5px;
     background-color: #ffb30f;
-}
-
-#main-game-button a {
-    text-decoration: none;
-    color: #353535;
 }
 
 /* ------------------------------------   Gameplay sections */
