@@ -70,6 +70,7 @@ function displayWord(word) {
 
     // displays the anagram in the anagram display
     document.getElementById('anagram').innerHTML = anagram;
+    console.log(word);
 }
 
 function getWord(cb) {
@@ -93,7 +94,8 @@ function getWord(cb) {
 
 function shuffle(word) {
     // returns shuffled version of word passed in from getWord()
-    return word.split("").sort().join(""); 
+    // code for random sort function from https://dev.to/codebubb/how-to-shuffle-an-array-in-javascript-2ikj
+    return word.split("").sort((a, b) => 0.5 - Math.random()).join(""); 
 }
 
 

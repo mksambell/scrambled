@@ -235,7 +235,7 @@ A copy of the GitHub Repository can be made by forking the GitHub account. This 
 
 ### Code
 
-
+- Code for random sort function from James Bubb on [Dev Community](https://dev.to/codebubb/how-to-shuffle-an-array-in-javascript-2ikj)
 
 ### Content
 
