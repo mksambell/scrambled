@@ -61,37 +61,39 @@ function startGame() {
     let endGameButton = document.getElementById('end-game-button');
     endGameButton.addEventListener('click', endGame);
 
-    displayWord();
+    getWord(displayWord);
 }
 
-function displayWord() {
-    // displays the word in the anagram display
+function displayWord(word) {
+    // calls shuffle() to create anagram
+    let anagram = shuffle(word);
 
-    let anagram = getWord();
+    // displays the anagram in the anagram display
     document.getElementById('anagram').innerHTML = anagram;
 }
 
-function getWord() {
+function getWord(cb) {
     let length = Math.floor(Math.random() * (10 - 5) + 5);
-    let URL = `https://random-word-api.herokuapp.com/word?length=${length}`;
+    let URL = `https://random-word-api.herokuapp.com/word?lang=en&length=${length}`;
 
     let xhr = new XMLHttpRequest();
-    xhr.open('GET', URL)
-    xhr.send()
+    xhr.open('GET', URL);
+    xhr.send();
 
-    xhr.onreadystatechange = () {
+    xhr.onreadystatechange = function() {
         if(this.readyState == 4 && this.status == 200) {
-            word = this.responseText.slice(2, length + 2);
+            cb(this.responseText.slice(2, length + 2));
         }
-        // else handle if the API doesn't return anything
-    }
-
-    return word;
+        // else {
+        //     document.getElementById('feedback-column').innerHTML = `
+        //     Sorry, the random word generator doesn't seem to be working. Please try again later.`
+        // }
+    };
 }
 
 function shuffle(word) {
     // returns shuffled version of word passed in from getWord()
-    return word; 
+    return word.split("").sort().join(""); 
 }
 
 
@@ -119,6 +121,6 @@ function endGame() {
 
 }
 
-let newGameButton = document.getElementById("new-game-button");
+// adds event listener to 'new game' button on landing page
+let newGameButton = document.getElementById('new-game-button');
 newGameButton.addEventListener('click', newGame);
-
