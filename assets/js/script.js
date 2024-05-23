@@ -13,9 +13,12 @@ function newGame() {
     <div class="row">
             <div id="user-input-column" class="col-sm-5 col-10 mx-auto">
                 <div class="row">
-                    <div id="guess-box" class="col-12 text-center">
+                    <div id="guess-form" class="col-12 text-center">
+                        <form> 
                         <label for="guess">Guess:</label>
-                        <input id="guess" type="text" name="guess">
+                        <input id="guess" type="text" name="guess" maxlength="7" minlength="7">
+                        <button id="submit" type="submit">Enter</button>
+                        </form>
                     </div>
                 </div>
                 <div class="row">
@@ -76,6 +79,15 @@ function startGame() {
     // adds event listener to 'reveal' button
     let revealButton = document.getElementById('reveal');
     revealButton.addEventListener('click', revealHandler);
+
+    // // adds event listener for Enter key
+    // let form = document.getElementsByTag('form');
+    // form.addEventListener('keypress', function(event) {
+    //     if (event.keyCode === 13) {
+    //         event.preventDefault();
+    //         form.submit();
+    //       }
+    // });
 
     shuffle(currentWord);
 }
