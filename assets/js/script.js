@@ -1,4 +1,10 @@
-function newGame(event) {
+
+let wordList = ['seventy']
+
+function newGame() {
+
+    // calls random word API when new game button is pressed
+    // wordList = getWords();
 
     // replaces description and logo on landing page with gameplay section
     let gameplaySection = document.getElementById("gameplay-container");
@@ -49,6 +55,7 @@ function newGame(event) {
 }
 
 function startGame() {
+
     //changes button name and id from 'start game' to 'end game'
     let buttonDiv = document.getElementById('game-button-div');
     buttonDiv.innerHTML = `
@@ -61,7 +68,7 @@ function startGame() {
     let endGameButton = document.getElementById('end-game-button');
     endGameButton.addEventListener('click', endGame);
 
-    getWord(displayWord);
+    displayWord(wordList[0]);
 }
 
 function displayWord(word) {
@@ -70,35 +77,45 @@ function displayWord(word) {
 
     // displays the anagram in the anagram display
     document.getElementById('anagram').innerHTML = anagram;
-    console.log(word);
 }
 
-function getWord(cb) {
-    let length = Math.floor(Math.random() * (10 - 5) + 5);
-    let URL = `https://random-word-api.herokuapp.com/word?lang=en&length=${length}`;
+function getWords() {
 
-    let xhr = new XMLHttpRequest();
-    xhr.open('GET', URL);
-    xhr.send();
+    let wordList = fetch('https://random-word-api.herokuapp.com/word?lang=en&length=7&number=10');
 
-    xhr.onreadystatechange = function() {
-        if(this.readyState == 4 && this.status == 200) {
-            cb(this.responseText.slice(2, length + 2));
-        }
-        // else {
-        //     document.getElementById('feedback-column').innerHTML = `
-        //     Sorry, the random word generator doesn't seem to be working. Please try again later.`
-        // }
-    };
+    wordList.then((response) => {
+        const jsonPromise = response.json();
+        jsonPromise.then((data) => {
+            console.log(data);
+        });
+    });
+
+
+    // sets a random number between 5-9 to add to the API request for different length words
+    // let length = Math.floor(Math.random() * (10 - 5) + 5);
+
+    // let URL = `https://random-word-api.herokuapp.com/word?lang=en&length=7&number=10`;
+
+    // let xhr = new XMLHttpRequest();
+    // xhr.open('GET', URL);
+    // xhr.send();
+
+    // xhr.onreadystatechange = function() {
+    //     if(this.readyState == 4 && this.status == 200) {
+    //         cb(this.responseText.slice(2, length + 2));
+    //     }
+    // else {
+    //     document.getElementById('feedback-column').innerHTML = `
+    //     Sorry, the random word generator doesn't seem to be working. Please try again later.`
+    // }
+    // };
 }
 
 function shuffle(word) {
     // returns shuffled version of word passed in from getWord()
     // code for random sort function from https://dev.to/codebubb/how-to-shuffle-an-array-in-javascript-2ikj
-    return word.split("").sort((a, b) => 0.5 - Math.random()).join(""); 
+    return word.split("").sort((a, b) => 0.5 - Math.random()).join("");
 }
-
-
 
 function endGame() {
     // checks if user wants to end game

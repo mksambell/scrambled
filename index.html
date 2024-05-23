@@ -30,13 +30,32 @@
         <div id="header-container" class="container-fluid">
             <div class="row">
                 <div class="col-sm-7 title-link">
-                    <a href="index.html">
-                        <h2 id="title-logo">scrambled</h2>
-                    </a>
+                    <h2 id="title-logo">scrambled</h2>
                 </div>
                 <div class="col-sm-5">
-                    <h3 id="instructions-link">how to play</h3>
+                    <h3 id="instructions-link" data-bs-toggle="modal" data-bs-target="#howToPlay">how to play</h3>
                 </div>
+
+                <!-- Modal - Code copied from Bootstrap.com and edited and restyled in custom CSS file -->
+                <div class="modal fade" id="howToPlay" tabindex="-1" aria-labelledby="howToPlay"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="howToPlay">how to play</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                ...
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </header>
