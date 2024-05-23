@@ -93,8 +93,30 @@
         <div id="footer-container" class="container-fluid">
             <div class="row">
                 <div class="col-sm">
-                    <h4 id="about-link">about</h4>
+                    <h4 id="about-link" data-bs-toggle="modal" data-bs-target="#about">about</h4>
                 </div>
+
+                <!-- Modal - Code copied from Bootstrap.com and edited and restyled in custom CSS file -->
+                <div class="modal fade" id="about" tabindex="-1" aria-labelledby="howToPlay"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="about">about</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                ...
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
                 <div class="col-sm">
                     <h4 id="copyright">&#169; 2024 Mark Sambell</h4>
                 </div>

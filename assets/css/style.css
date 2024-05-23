@@ -62,6 +62,10 @@ h1, h2, h3, h4 {
     padding-right: .5rem;
 }
 
+#instructions-link:hover {
+    cursor: pointer;
+}
+
 /* ------------------------------------   Anagram display */
 
 #anagram {
@@ -122,6 +126,10 @@ h1, h2, h3, h4 {
     margin-left: .5rem;
     font-weight: 400;
     font-size: 130%;
+}
+
+#about-link:hover {
+    cursor: pointer;
 }
 
 /* ------------------------------------   Media queries */
