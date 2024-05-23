@@ -1,5 +1,6 @@
 
-let wordList = ['seventy']
+let wordList = ['seventy'];
+let currentWord = wordList[0];
 
 function newGame() {
 
@@ -26,8 +27,8 @@ function newGame() {
                 </div>
                 <div class="row">
                     <div class="col-12 text-center">
-                        <button>shuffle</button>
-                        <button>reveal</button>
+                        <button id="shuffle">shuffle</button>
+                        <button id="reveal">reveal</button>
                     </div>
                 </div>
             </div>
@@ -68,12 +69,19 @@ function startGame() {
     let endGameButton = document.getElementById('end-game-button');
     endGameButton.addEventListener('click', endGame);
 
-    displayWord(wordList[0]);
+    // adds event listener to 'shuffle' button
+    let shuffleButton = document.getElementById('shuffle');
+    shuffleButton.addEventListener('click', shuffleBtn);
+
+    shuffle(currentWord);
 }
 
-function displayWord(word) {
-    // calls shuffle() to create anagram
-    let anagram = shuffle(word);
+function shuffleBtn() {
+    shuffle(currentWord);
+    console.log(currentWord);
+}
+
+function displayWord(anagram) {
 
     // displays the anagram in the anagram display
     document.getElementById('anagram').innerHTML = anagram;
@@ -114,7 +122,7 @@ function getWords() {
 function shuffle(word) {
     // returns shuffled version of word passed in from getWord()
     // code for random sort function from https://dev.to/codebubb/how-to-shuffle-an-array-in-javascript-2ikj
-    return word.split("").sort((a, b) => 0.5 - Math.random()).join("");
+    displayWord(word.split("").sort((a, b) => 0.5 - Math.random()).join(""));
 }
 
 function endGame() {
