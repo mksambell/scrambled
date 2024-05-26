@@ -89,7 +89,7 @@ function startGame() {
     //       }
     // });
 
-    shuffle(currentWord);
+    getWords();
 }
 
 function revealHandler() {
@@ -110,36 +110,26 @@ function displayWord(anagram) {
     document.getElementById('anagram').innerHTML = anagram;
 }
 
-function getWords() {
+// syntax for API developed from code by youtuber ByteGrad
+const getWords = async () => {
+    
+    try {
+        const response = await fetch('https://rando-word-api.herokuapp.com/word?lang=en&length=7&number=10');
+        const wordList = await response.json();
 
-    let wordList = fetch('https://random-word-api.herokuapp.com/word?lang=en&length=7&number=10');
+        if(!response.ok) {
+            console.log(response.description);
+            
+            return;
+        }
 
-    wordList.then((response) => {
-        const jsonPromise = response.json();
-        jsonPromise.then((data) => {
-            console.log(data);
-        });
-    });
+        console.log(wordList[0]);
+    } catch (error) {
+        document.getElementById('feedback-column').innerHTML = `<p>
+                Sorry, the random word generator is not working at the moment. Please try again later</p>`;
+    }
+    
 
-
-    // sets a random number between 5-9 to add to the API request for different length words
-    // let length = Math.floor(Math.random() * (10 - 5) + 5);
-
-    // let URL = `https://random-word-api.herokuapp.com/word?lang=en&length=7&number=10`;
-
-    // let xhr = new XMLHttpRequest();
-    // xhr.open('GET', URL);
-    // xhr.send();
-
-    // xhr.onreadystatechange = function() {
-    //     if(this.readyState == 4 && this.status == 200) {
-    //         cb(this.responseText.slice(2, length + 2));
-    //     }
-    // else {
-    //     document.getElementById('feedback-column').innerHTML = `
-    //     Sorry, the random word generator doesn't seem to be working. Please try again later.`
-    // }
-    // };
 }
 
 function shuffle(word) {
