@@ -85,12 +85,12 @@ async function startGame() {
     // });
 
     currentWord = await getWord();
-    console.log(currentWord);
     displayWord(shuffle(currentWord));
 }
 
 function revealHandler() {
     //confirm that proceeding loses a life
+
     displayWord(currentWord);
 }
 
@@ -111,12 +111,12 @@ async function getWord() {
         const response = await fetch('https://random-word-api.herokuapp.com/word?lang=en&length=7');
         let word = await response.json();
 
-        return word[0];
-
         if (!response.ok) {
             console.log(response.description);
             return;
-        }
+        };
+
+        return word[0];
 
     } catch (error) {
         document.getElementById('feedback-column').innerHTML = `<p>
@@ -127,7 +127,17 @@ async function getWord() {
 function shuffle(word) {
     // shuffles word received from API
     // code for random sort algorithm from https://dev.to/codebubb/how-to-shuffle-an-array-in-javascript-2ikj
-    return word.split("").sort((a, b) => 0.5 - Math.random()).join("");
+    let anagram = word;
+
+    //ensures that anagram is not the answer
+    while (word === anagram) {
+        let anagram = word.split("").sort((a, b) => 0.5 - Math.random()).join("");
+    }
+    return anagram;
+}
+
+function checkAnswer() {
+
 }
 
 function endGame() {
