@@ -1,11 +1,8 @@
-
-let wordList = ['seventy'];
-let currentWord = wordList[0];
+let currentWord;
+let wordList = [];
+let unscrambledList = [];
 
 function newGame() {
-
-    // calls random word API when new game button is pressed
-    // wordList = getWords();
 
     // replaces description and logo on landing page with gameplay section
     let gameplaySection = document.getElementById("gameplay-container");
@@ -14,11 +11,9 @@ function newGame() {
             <div id="user-input-column" class="col-sm-5 col-10 mx-auto">
                 <div class="row">
                     <div id="guess-form" class="col-12 text-center">
-                        <form> 
                         <label for="guess">Guess:</label>
                         <input id="guess" type="text" name="guess" maxlength="7" minlength="7">
                         <button id="submit" type="submit">Enter</button>
-                        </form>
                     </div>
                 </div>
                 <div class="row">
@@ -58,7 +53,7 @@ function newGame() {
     anagram.innerHTML = 'good luck';
 }
 
-function startGame() {
+async function startGame() {
 
     //changes button name and id from 'start game' to 'end game'
     let buttonDiv = document.getElementById('game-button-div');
@@ -89,53 +84,50 @@ function startGame() {
     //       }
     // });
 
-    getWords();
+    currentWord = await getWord();
+    console.log(currentWord);
+    displayWord(shuffle(currentWord));
 }
 
 function revealHandler() {
     //confirm that proceeding loses a life
-
     displayWord(currentWord);
 }
 
 function shuffleHandler() {
-
     //handles shuffle button click
-    shuffle(currentWord);
+    displayWord(shuffle(currentWord));
 }
 
 function displayWord(anagram) {
-
     // displays the anagram in the anagram display
     document.getElementById('anagram').innerHTML = anagram;
 }
 
 // syntax for API developed from code by youtuber ByteGrad
-const getWords = async () => {
-    
-    try {
-        const response = await fetch('https://rando-word-api.herokuapp.com/word?lang=en&length=7&number=10');
-        const wordList = await response.json();
+async function getWord() {
 
-        if(!response.ok) {
+    try {
+        const response = await fetch('https://random-word-api.herokuapp.com/word?lang=en&length=7');
+        let word = await response.json();
+
+        return word[0];
+
+        if (!response.ok) {
             console.log(response.description);
-            
             return;
         }
 
-        console.log(wordList[0]);
     } catch (error) {
         document.getElementById('feedback-column').innerHTML = `<p>
                 Sorry, the random word generator is not working at the moment. Please try again later</p>`;
     }
-    
-
 }
 
 function shuffle(word) {
-    // shuffles currentWord and calls displayWord()
-    // code for random sort function from https://dev.to/codebubb/how-to-shuffle-an-array-in-javascript-2ikj
-    displayWord(word.split("").sort((a, b) => 0.5 - Math.random()).join(""));
+    // shuffles word received from API
+    // code for random sort algorithm from https://dev.to/codebubb/how-to-shuffle-an-array-in-javascript-2ikj
+    return word.split("").sort((a, b) => 0.5 - Math.random()).join("");
 }
 
 function endGame() {
