@@ -1,5 +1,5 @@
 let currentWord;
-let wordList = [];
+let unsolvedList = [];
 let unscrambledList = [];
 
 function newGame() {
@@ -86,8 +86,7 @@ async function startGame() {
     //       }
     // });
 
-    // currentWord = await getWord();
-    currentWord = 'seventy';
+    currentWord = await getWord();
     displayWord(shuffle(currentWord));
 }
 
@@ -96,15 +95,22 @@ function revealHandler() {
     if (confirm('Revealing the word will lose a life. \nDo you wish to proceed?')) {
         // decrease life
 
+
         //displays answer
         displayWord(currentWord);
+
+        // adds word to list of unsolved words
+        unsolvedList.push(currentWord);
 
         //changes button name and id from 'reveal' to 'next word'
         let revealBtn = document.getElementById('reveal');
         revealBtn.innerHTML = `next word`;
 
         // prevents user clicking reveal twice
-        revealBtn.removeEventListener('click', revealHandler)
+        revealBtn.removeEventListener('click', revealHandler);
+
+        // prevents further shuffle clicks
+        document.getElementById('shuffle').removeEventListener('click', shuffleHandler);
 
         // listens for user to move to next word
         revealBtn.addEventListener('click', nextWordHandler);
@@ -114,8 +120,21 @@ function revealHandler() {
     }
 }
 
-function nextWordHandler() {
-    console.log("working")
+async function nextWordHandler() {
+    currentWord = await getWord();
+    displayWord(shuffle(currentWord));
+
+    //changes button name and id from 'next word' to 'reveal'
+    let revealBtn = document.getElementById('reveal');
+    revealBtn.innerHTML = `reveal`;
+
+    revealBtn.removeEventListener('click', nextWordHandler);
+
+    revealBtn.addEventListener('click', revealHandler);
+
+    // reinstates shuffle listener
+    document.getElementById('shuffle').addEventListener('click', shuffleHandler);
+
 }
 
 function shuffleHandler() {
