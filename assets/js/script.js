@@ -10,10 +10,10 @@ function newGame() {
     <div class="row">
             <div id="user-input-column" class="col-sm-5 col-10 mx-auto">
                 <div class="row">
-                    <div id="guess-form" class="col-12 text-center">
+                    <div id="guess-box" class="col-12 text-center">
                         <label for="guess">Guess:</label>
                         <input id="guess" type="text" name="guess" maxlength="7" minlength="7">
-                        <button id="submit" type="submit">Enter</button>
+                        <button id="enter">Enter</button>
                     </div>
                 </div>
                 <div class="row">
@@ -24,8 +24,10 @@ function newGame() {
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-12 text-center">
+                    <div id="shuffle-container" class="col-6 text-center">
                         <button id="shuffle">shuffle</button>
+                    </div>
+                    <div id="reveal-container" class="col-6 text-center">
                         <button id="reveal">reveal</button>
                     </div>
                 </div>
@@ -84,14 +86,36 @@ async function startGame() {
     //       }
     // });
 
-    currentWord = await getWord();
+    // currentWord = await getWord();
+    currentWord = 'seventy';
     displayWord(shuffle(currentWord));
 }
 
 function revealHandler() {
-    //confirm that proceeding loses a life
+    // gets user to confirm that proceeding loses a life
+    if (confirm('Revealing the word will lose a life. \nDo you wish to proceed?')) {
+        // decrease life
 
-    displayWord(currentWord);
+        //displays answer
+        displayWord(currentWord);
+
+        //changes button name and id from 'reveal' to 'next word'
+        let revealBtn = document.getElementById('reveal');
+        revealBtn.innerHTML = `next word`;
+
+        // prevents user clicking reveal twice
+        revealBtn.removeEventListener('click', revealHandler)
+
+        // listens for user to move to next word
+        revealBtn.addEventListener('click', nextWordHandler);
+
+    } else {
+        return;
+    }
+}
+
+function nextWordHandler() {
+    console.log("working")
 }
 
 function shuffleHandler() {
@@ -127,13 +151,14 @@ async function getWord() {
 function shuffle(word) {
     // shuffles word received from API
     // code for random sort algorithm from https://dev.to/codebubb/how-to-shuffle-an-array-in-javascript-2ikj
-    let anagram = word;
+    let anagram = word.split("").sort((a, b) => 0.5 - Math.random()).join("");
 
-    //ensures that anagram is not the answer
-    while (word === anagram) {
-        let anagram = word.split("").sort((a, b) => 0.5 - Math.random()).join("");
-    }
-    return anagram;
+    // ensures that shuffle does not return answer
+    if (anagram === word) {
+        shuffle(word);
+    } else {
+        return anagram;
+    };
 }
 
 function checkAnswer() {
