@@ -102,9 +102,14 @@ h1, h2, h3, h4 {
 #user-input-column, #feedback-column {
     border: solid 2px #353535;
     border-radius: 5px;
-    padding: 10px;
+    padding: 20px;
     height: 35vh;
     background-color: #8e8e8e;
+    font-size: 120%;
+}
+
+#guessword {
+    text-transform: uppercase;
 }
 
 #lives, i {

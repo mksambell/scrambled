@@ -79,6 +79,9 @@ function startGame() {
     let revealButton = document.getElementById('reveal');
     revealButton.addEventListener('click', revealHandler);
 
+    // adds event listener to 'enter' button
+    document.getElementById('enter').addEventListener('click', enterHandler);
+
     // // adds event listener for Enter key
     // let form = document.getElementsByTag('form');
     // form.addEventListener('keypress', function(event) {
@@ -89,14 +92,14 @@ function startGame() {
     // });
 
     document.getElementById('feedback-column').innerHTML = `
-        Generating anagram...`
+        <p>Generating anagram...</p>`
 }
 
 async function newWord() {
     currentWord = await getWord();
     displayWord(shuffle(currentWord));
     document.getElementById('feedback-column').innerHTML = `
-        Guess away!`
+        <p>Guess away!</p>`
 }
 
 function revealHandler() {
@@ -133,7 +136,7 @@ function nextWordHandler() {
     newWord();
 
     document.getElementById('feedback-column').innerHTML = `
-        Generating anagram...`
+        <p>Generating anagram...</p>`
 
     //changes button name and id from 'next word' to 'reveal'
     let revealBtn = document.getElementById('reveal');
@@ -145,6 +148,11 @@ function nextWordHandler() {
 
     // reinstates shuffle listener
     document.getElementById('shuffle').addEventListener('click', shuffleHandler);
+}
+
+function enterHandler() {
+    guess = document.getElementById('guess').value;
+    checkAnswer(guess);
 }
 
 function shuffleHandler() {
@@ -190,8 +198,15 @@ function shuffle(word) {
     };
 }
 
-function checkAnswer() {
+function checkAnswer(guess) {
 
+    // check if guess is of correct length, type, correct letters before checking against answer
+
+    document.getElementById('feedback-column').innerHTML = `
+        <p>Your guess: ${guess.toUpperCase()}</p>`
+
+    // clears input field
+    document.getElementById('guess').value = "";
 }
 
 function endGame() {
