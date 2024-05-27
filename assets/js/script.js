@@ -55,7 +55,9 @@ function newGame() {
     anagram.innerHTML = 'good luck';
 }
 
-async function startGame() {
+function startGame() {
+
+    newWord();
 
     //changes button name and id from 'start game' to 'end game'
     let buttonDiv = document.getElementById('game-button-div');
@@ -86,8 +88,15 @@ async function startGame() {
     //       }
     // });
 
+    document.getElementById('feedback-column').innerHTML = `
+        Generating anagram...`
+}
+
+async function newWord() {
     currentWord = await getWord();
     displayWord(shuffle(currentWord));
+    document.getElementById('feedback-column').innerHTML = `
+        Guess away!`
 }
 
 function revealHandler() {
@@ -120,9 +129,11 @@ function revealHandler() {
     }
 }
 
-async function nextWordHandler() {
-    currentWord = await getWord();
-    displayWord(shuffle(currentWord));
+function nextWordHandler() {
+    newWord();
+
+    document.getElementById('feedback-column').innerHTML = `
+        Generating anagram...`
 
     //changes button name and id from 'next word' to 'reveal'
     let revealBtn = document.getElementById('reveal');
@@ -134,7 +145,6 @@ async function nextWordHandler() {
 
     // reinstates shuffle listener
     document.getElementById('shuffle').addEventListener('click', shuffleHandler);
-
 }
 
 function shuffleHandler() {
