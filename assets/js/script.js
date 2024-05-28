@@ -2,7 +2,7 @@ let currentWord;
 let unsolvedList = [];
 let unscrambledList = [];
 let lives = 3;
-let turns = 0;
+let score = 0;
 
 function newGame() {
 
@@ -112,7 +112,9 @@ async function newWord() {
 }
 
 function revealHandler() {
-    // gets user to confirm that proceeding loses a life
+    // check number of lives
+    // if more than one life remaining, confirm with message
+    // if only one life remaining, confirm with end game message, and trigger endgame
     if (confirm('Revealing the word will lose a life. \nDo you wish to proceed?')) {
         // decrease life
 
@@ -122,7 +124,7 @@ function revealHandler() {
         //displays answer
         displayWord(currentWord);
 
-        // 
+        // displays answer in feedback section
         document.getElementById('feedback-column').innerHTML = `
             <p>The word was ${currentWord.toUpperCase()}.`;
 
@@ -237,7 +239,9 @@ function checkGuess(guess) {
 
         unscrambledList.push(currentWord);
         console.log(unscrambledList);
+
         //increment score and display score
+        incrementScore();
 
         //changes button name and id from 'reveal' to 'next word'
         document.getElementById('reveal').innerHTML = `next word`;
@@ -272,6 +276,12 @@ function checkGuess(guess) {
         // if above 1, decrease
         // else game over
     }
+}
+
+function incrementScore() {
+    score += 1;
+    console.log(score);
+    document.getElementById('score').innerHTML = `Score: ${score}`;
 }
 
 function endGame() {
