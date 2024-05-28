@@ -31,6 +31,11 @@ function newGame() {
                         <button id="reveal">reveal</button>
                     </div>
                 </div>
+                <div class="row">
+                    <div id="score-container" class="col-12 text-center">
+                        <p id="score">Score: 0</p>
+                    </div>
+                </div>
             </div>
             <div id="feedback-column" class="col-sm-5 col-10 mx-auto">
                 Click 'start game' to display the first anagram
@@ -127,6 +132,9 @@ function revealHandler() {
         // listens for user to move to next word
         revealBtn.addEventListener('click', nextWordHandler);
 
+        // prevents user entering word once revealed
+        document.getElementById('enter').removeEventListener('click', enterHandler);
+
     } else {
         return;
     }
@@ -143,11 +151,13 @@ function nextWordHandler() {
     revealBtn.innerHTML = `reveal`;
 
     revealBtn.removeEventListener('click', nextWordHandler);
-
     revealBtn.addEventListener('click', revealHandler);
 
-    // reinstates shuffle listener
+    // reinstates shuffle event listener
     document.getElementById('shuffle').addEventListener('click', shuffleHandler);
+
+    // reinstates enter event listener
+    document.getElementById('enter').addEventListener('click', enterHandler);
 }
 
 function enterHandler() {

@@ -108,8 +108,8 @@ h1, h2, h3, h4 {
     font-size: 120%;
 }
 
-#guessword {
-    text-transform: uppercase;
+#guess {
+    width: 50%;
 }
 
 #lives, i {
@@ -139,6 +139,16 @@ h1, h2, h3, h4 {
 }
 
 /* ------------------------------------   Media queries */
+
+/* For mobile screens of 768px width and less */
+
+@media screen and (max-width: 768px) {
+    #anagram {
+        font-size: 6vh;
+        letter-spacing: .6rem;
+        padding-left: .6rem;
+    }
+}
 
 /* For mobile screens of 576px width and less */
 
@@ -191,6 +201,7 @@ h1, h2, h3, h4 {
 
     #user-input-column, #feedback-column {
         height: 25vh;
+        font-size: 100%;
     }
 
     #feedback-column {
@@ -198,4 +209,17 @@ h1, h2, h3, h4 {
         margin-top: 2vh;
     }
 
+}
+
+/* For mobile screens of 350px width and less */
+
+@media screen and (max-width: 350px) {
+    #anagram {
+        font-size: 4vh;
+        letter-spacing: .4rem;
+        padding-left: .4rem;
+    }
+
+    #user-input-column, #feedback-column {
+        padding: 10px;
 }
