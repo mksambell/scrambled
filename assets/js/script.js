@@ -112,6 +112,8 @@ function revealHandler() {
     if (confirm('Revealing the word will lose a life. \nDo you wish to proceed?')) {
         // decrease life
 
+        // clears input field
+        document.getElementById('guess').value = "";
 
         //displays answer
         displayWord(currentWord);
@@ -143,6 +145,9 @@ function revealHandler() {
 function nextWordHandler() {
     newWord();
 
+    // clears input field
+    document.getElementById('guess').value = "";
+
     document.getElementById('feedback-column').innerHTML = `
         <p>Generating anagram...</p>`
 
@@ -162,7 +167,7 @@ function nextWordHandler() {
 
 function enterHandler() {
     guess = document.getElementById('guess').value;
-    checkGuessValid(guess);
+    checkGuess(guess);
 }
 
 function shuffleHandler() {
@@ -209,24 +214,49 @@ function shuffle(word) {
 }
 
 function checkGuess(guess) {
+    // checks guess against currentWord
 
-    // clears input field
-    document.getElementById('guess').value = "";
-
-    // if guess passes first tests, but is not correct
-    document.getElementById('feedback-column').innerHTML = `
-        <p>Your guess: ${guess.toUpperCase()}</p>`
-}
-
-function checkGuessValid(guess) {
     let feedback = document.getElementById('feedback-column');
 
-    // checks if guess is of correct length, type, correct letters before calling checkGuess()
-    if (guess.length > 7) {
-        console.log("too short");
+    // if correct
+    if (guess === currentWord) {
+
+        // clears input field
+        document.getElementById('guess').value = "";
+
+        feedback.innerHTML = `
+        <p>${guess.toUpperCase()} is correct!</p>`;
+
+        unscrambledList.push(currentWord);
+        console.log(unscrambledList);
+        //increment score and display score
+
+        //changes button name and id from 'reveal' to 'next word'
+        document.getElementById('reveal').innerHTML = `next word`;
+
+        // deactivates shuffle button
+        document.getElementById('shuffle').removeEventListener('click', shuffleHandler);
+
+        //deactivates enter button
+        document.getElementById('enter').removeEventListener('click', enterHandler);
+
+        //removes reveal handler listener and adds next word handler listener
+        document.getElementById('reveal').removeEventListener('click', revealHandler);
+        document.getElementById('reveal').addEventListener('click', nextWordHandler);
+
+    } else if (guess === "") {
+        feedback.innerHTML = `
+        <p>You didn't enter a guess. Try again!</p>`;
+    } else if (guess.length < 7) {
         feedback.innerHTML = `
         <p>Your guess is too short. Try again!</p>`;
-    };
+    } else if (guess.split("").sort().join("") !== currentWord.split("").sort().join("")) {
+        feedback.innerHTML = `
+        <p>Your guess doesn't contain the letters of the anagram. Try again!</p>`;
+    } else {
+        document.getElementById('feedback-column').innerHTML = `
+        <p>${guess.toUpperCase()} is not correct. Try again! </p>`
+    }
 }
 
 function endGame() {
