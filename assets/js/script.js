@@ -116,7 +116,8 @@ function revealHandler() {
     // if more than one life remaining, confirm with message
     // if only one life remaining, confirm with end game message, and trigger endgame
     if (confirm('Revealing the word will lose a life. \nDo you wish to proceed?')) {
-        // decrease life
+        // decrease a life
+        dockLife();
 
         // clears input field
         document.getElementById('guess').value = "";
@@ -149,6 +150,25 @@ function revealHandler() {
 
     } else {
         return;
+    }
+}
+
+function dockLife() {
+    lives -= 1;
+    console.log(lives);
+    showLives();
+}
+
+function showLives() {
+    if (lives === 2) {
+        document.getElementById('life3').classList.remove('fa-solid');
+        document.getElementById('life3').classList.add('fa-regular');
+    } else if (lives === 1) {
+        document.getElementById('life2').classList.remove('fa-solid');
+        document.getElementById('life2').classList.add('fa-regular');
+    } else {
+        document.getElementById('life1').classList.remove('fa-solid');
+        document.getElementById('life1').classList.add('fa-regular');
     }
 }
 
@@ -249,9 +269,6 @@ function checkGuess(guess) {
         // deactivates shuffle button
         document.getElementById('shuffle').removeEventListener('click', shuffleHandler);
 
-        //deactivates enter button
-        document.getElementById('enter').removeEventListener('click', enterHandler);
-
         //removes reveal handler listener and adds next word handler listener
         document.getElementById('reveal').removeEventListener('click', revealHandler);
         document.getElementById('reveal').addEventListener('click', nextWordHandler);
@@ -274,13 +291,13 @@ function checkGuess(guess) {
 
         // check number of lives
         // if above 1, decrease
+        dockLife();
         // else game over
     }
 }
 
 function incrementScore() {
     score += 1;
-    console.log(score);
     document.getElementById('score').innerHTML = `Score: ${score}`;
 }
 
