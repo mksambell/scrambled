@@ -1,12 +1,13 @@
 let currentWord;
 let unsolvedList = [];
 let unscrambledList = [];
+let lives = 3;
+let turns = 0;
 
 function newGame() {
 
     // replaces description and logo on landing page with gameplay section
-    let gameplaySection = document.getElementById("gameplay-container");
-    gameplaySection.innerHTML = `
+    document.getElementById("gameplay-container").innerHTML = `
     <div class="row">
             <div id="user-input-column" class="col-sm-5 col-10 mx-auto">
                 <div class="row">
@@ -17,22 +18,25 @@ function newGame() {
                     </div>
                 </div>
                 <div class="row">
-                    <div id="shuffle-container" class="col-6 text-center">
-                        <button id="shuffle">shuffle</button>
-                    </div>
-                    <div id="reveal-container" class="col-6 text-center">
-                        <button id="reveal">reveal</button>
-                    </div>
+                    <div class="col-md-6 col-sm-8 col-xs-10 mx-auto">
+                        <div class="row">
+                            <div id="shuffle-container" class="col-6 text-center">
+                                <button id="shuffle">shuffle</button>
+                            </div>
+                            <div id="reveal-container" class="col-6 text-center">
+                                <button id="reveal">reveal</button>
+                            </div>
+                        </div>
+                    </div> 
                 </div>
+                <div id="spacer"></div>
                 <div class="row">
-                    <div id="lives" class="col-12 text-center">
-                        <i class="fa-solid fa-heart life"></i>
-                        <i class="fa-solid fa-heart life"></i>
-                        <i class="fa-solid fa-heart life"></i>
+                    <div id="lives" class="col-md col-sm-12 text-center">
+                        <i id="life1" class="fa-solid fa-heart life"></i>
+                        <i id="life2" class="fa-solid fa-heart life"></i>
+                        <i id="life3" class="fa-solid fa-heart life"></i>
                     </div>
-                </div>
-                <div class="row">
-                    <div id="score-container" class="col-12 text-center">
+                    <div id="score-container" class="col-md col-sm-12 text-center">
                         <p id="score">Score: 0</p>
                     </div>
                 </div>
@@ -117,6 +121,10 @@ function revealHandler() {
 
         //displays answer
         displayWord(currentWord);
+
+        // 
+        document.getElementById('feedback-column').innerHTML = `
+            <p>The word was ${currentWord.toUpperCase()}.`;
 
         // adds word to list of unsolved words
         unsolvedList.push(currentWord);
@@ -253,9 +261,16 @@ function checkGuess(guess) {
     } else if (guess.split("").sort().join("") !== currentWord.split("").sort().join("")) {
         feedback.innerHTML = `
         <p>Your guess doesn't contain the letters of the anagram. Try again!</p>`;
+    // } else if (guess has nonalphetical characters) {
+    //     feedback.innerHTML = `
+    //     <p>Your guess should only contain letters. Try again!</p>`;
     } else {
         document.getElementById('feedback-column').innerHTML = `
         <p>${guess.toUpperCase()} is not correct. Try again! </p>`
+
+        // check number of lives
+        // if above 1, decrease
+        // else game over
     }
 }
 
