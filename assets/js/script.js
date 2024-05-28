@@ -17,18 +17,18 @@ function newGame() {
                     </div>
                 </div>
                 <div class="row">
-                    <div id="lives" class="col-12 text-center">
-                        <i class="fa-solid fa-heart life"></i>
-                        <i class="fa-solid fa-heart life"></i>
-                        <i class="fa-solid fa-heart life"></i>
-                    </div>
-                </div>
-                <div class="row">
                     <div id="shuffle-container" class="col-6 text-center">
                         <button id="shuffle">shuffle</button>
                     </div>
                     <div id="reveal-container" class="col-6 text-center">
                         <button id="reveal">reveal</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div id="lives" class="col-12 text-center">
+                        <i class="fa-solid fa-heart life"></i>
+                        <i class="fa-solid fa-heart life"></i>
+                        <i class="fa-solid fa-heart life"></i>
                     </div>
                 </div>
                 <div class="row">
@@ -162,7 +162,7 @@ function nextWordHandler() {
 
 function enterHandler() {
     guess = document.getElementById('guess').value;
-    checkAnswer(guess);
+    checkGuessValid(guess);
 }
 
 function shuffleHandler() {
@@ -208,15 +208,25 @@ function shuffle(word) {
     };
 }
 
-function checkAnswer(guess) {
-
-    // check if guess is of correct length, type, correct letters before checking against answer
-
-    document.getElementById('feedback-column').innerHTML = `
-        <p>Your guess: ${guess.toUpperCase()}</p>`
+function checkGuess(guess) {
 
     // clears input field
     document.getElementById('guess').value = "";
+
+    // if guess passes first tests, but is not correct
+    document.getElementById('feedback-column').innerHTML = `
+        <p>Your guess: ${guess.toUpperCase()}</p>`
+}
+
+function checkGuessValid(guess) {
+    let feedback = document.getElementById('feedback-column');
+
+    // checks if guess is of correct length, type, correct letters before calling checkGuess()
+    if (guess.length > 7) {
+        console.log("too short");
+        feedback.innerHTML = `
+        <p>Your guess is too short. Try again!</p>`;
+    };
 }
 
 function endGame() {
