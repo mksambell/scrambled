@@ -4,7 +4,7 @@ let unscrambledList = [];
 let lives = 3;
 let score = 0;
 
-//store DOM element ids in variables for later use
+//stores DOM element in variables for later use
 
 let shufBtn;
 let revBtn;
@@ -19,7 +19,7 @@ mainBtn.addEventListener('click', newGame);
 
 function newGame() {
 
-    //resets all global variables
+    //resets gameplay variables
     currentWord = "";
     unsolvedList = [];
     unscrambledList = [];
@@ -91,30 +91,22 @@ function startGame() {
     //changes main button name and changes event listener
     mainBtn.innerHTML = `end game`;
     mainBtn.removeEventListener('click', startGame);
-    mainBtn.addEventListener('click', endGameHandler);
-
-    // adds event listeners to gameplay buttons
-    shufBtn.addEventListener('click', shuffleHandler);
-    revBtn.addEventListener('click', revealHandler);
-    entBtn.addEventListener('click', enterHandler);
-
-    // // adds event listener for Enter key
-    // let form = document.getElementsByTag('form');
-    // form.addEventListener('keypress', function(event) {
-    //     if (event.keyCode === 13) {
-    //         event.preventDefault();
-    //         form.submit();
-    //       }
-    // });
 
     fdbk.innerHTML = `
         <p>Generating anagram...</p>`
 }
 
 async function newWord() {
+
     currentWord = await getWord();
     displayWord(shuffle(currentWord));
     fdbk.innerHTML = `<p>Guess away!</p>`
+
+    // add event listeners to gameplay buttons
+    shufBtn.addEventListener('click', shuffleHandler);
+    revBtn.addEventListener('click', revealHandler);
+    entBtn.addEventListener('click', enterHandler);
+    mainBtn.addEventListener('click', endGameHandler);
 }
 
 function revealHandler() {
@@ -146,9 +138,9 @@ function revealHandler() {
 
             //changes reveal button and event listeners
             revBtn.innerHTML = `next word`;
-            revBtn.addEventListener('click', nextWordHandler);
             revBtn.removeEventListener('click', revealHandler);
-
+            revBtn.addEventListener('click', nextWordHandler);
+            
             // prevents further shuffle clicks
             shufBtn.removeEventListener('click', shuffleHandler);
 
@@ -195,13 +187,6 @@ function nextWordHandler() {
     //changes reveal button name and event listeners
     revBtn.innerHTML = `reveal`;
     revBtn.removeEventListener('click', nextWordHandler);
-    revBtn.addEventListener('click', revealHandler);
-
-    // reinstates shuffle event listener
-    shufBtn.addEventListener('click', shuffleHandler);
-
-    // reinstates enter event listener
-    entBtn.addEventListener('click', enterHandler);
 }
 
 function enterHandler() {
@@ -290,13 +275,13 @@ function checkGuess(g) {
         //     feedback.innerHTML = `
         //     <p>Your guess should only contain letters. Try again!</p>`;
     } else {
-        fdbk.innerHTML = `
-            <p>${g.toUpperCase()} is not correct. Try again! </p>`
-
-        // check number of lives
-        // if above 1, decrease
-        dockLife();
-        // else game over
+        if (lives > 1) {
+            fdbk.innerHTML = `
+                <p>${g.toUpperCase()} is not correct. Try again! </p>`;
+            dockLife();
+        } else {
+            gameOver();
+        }
     }
 }
 
