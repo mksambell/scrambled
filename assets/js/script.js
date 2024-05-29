@@ -9,6 +9,13 @@ let score = 0;
 let shufBtn;
 let revBtn;
 let entBtn;
+let fdbk;
+let guess;
+let scr;
+let anagram = document.getElementById('anagram');
+let mainBtn = document.getElementById('mainBtn');
+
+mainBtn.addEventListener('click', newGame);
 
 function newGame() {
 
@@ -55,7 +62,7 @@ function newGame() {
                 </div>
             </div>
             <div id="feedback-column" class="col-sm-5 col-10 mx-auto">
-                Click 'start game' to display the first anagram
+                <p>Click 'start game' to display the first anagram</p>
             </div>
         </div>
     `;
@@ -64,21 +71,16 @@ function newGame() {
     shufBtn = document.getElementById('shuffle');
     revBtn = document.getElementById('reveal');
     entBtn = document.getElementById('enter');
+    fdbk = document.getElementById('feedback-column');
+    guess = document.getElementById('guess');
+    scr = document.getElementById('score');
 
-    //changes button name and id from 'new game' to 'start game'
-    let buttonDiv = document.getElementById('game-button-div');
-    buttonDiv.innerHTML = `
-    <button id="start-game-button">
-                    start game
-                </button>
-    `;
-
-    //adds event listener to 'start game' button
-    let startGameButton = document.getElementById('start-game-button');
-    startGameButton.addEventListener('click', startGame);
+    //changes main button name, and adds event listener
+    mainBtn.innerHTML = `start game`;
+    mainBtn.removeEventListener('click', newGame);
+    mainBtn.addEventListener('click', startGame);
 
     // displays GOOD LUCK in anagram display
-    let anagram = document.getElementById('anagram');
     anagram.innerHTML = 'good luck';
 }
 
@@ -86,25 +88,14 @@ function startGame() {
 
     newWord();
 
-    //changes button name and id from 'start game' to 'end game'
-    let buttonDiv = document.getElementById('game-button-div');
-    buttonDiv.innerHTML = `
-    <button id="end-game-button">
-                    end game
-                </button>
-    `;
+    //changes main button name and changes event listener
+    mainBtn.innerHTML = `end game`;
+    mainBtn.removeEventListener('click', startGame);
+    mainBtn.addEventListener('click', endGameHandler);
 
-    // adds event listener to 'end game' button
-    let endGameButton = document.getElementById('end-game-button');
-    endGameButton.addEventListener('click', endGameHandler);
-
-    // adds event listener to 'shuffle' button
+    // adds event listeners to gameplay buttons
     shufBtn.addEventListener('click', shuffleHandler);
-
-    // adds event listener to 'reveal' button
     revBtn.addEventListener('click', revealHandler);
-
-    // adds event listener to 'enter' button
     entBtn.addEventListener('click', enterHandler);
 
     // // adds event listener for Enter key
@@ -116,15 +107,14 @@ function startGame() {
     //       }
     // });
 
-    document.getElementById('feedback-column').innerHTML = `
+    fdbk.innerHTML = `
         <p>Generating anagram...</p>`
 }
 
 async function newWord() {
     currentWord = await getWord();
     displayWord(shuffle(currentWord));
-    document.getElementById('feedback-column').innerHTML = `
-        <p>Guess away!</p>`
+    fdbk.innerHTML = `<p>Guess away!</p>`
 }
 
 function revealHandler() {
@@ -141,7 +131,7 @@ function revealHandler() {
         dockLife();
 
         // clears input field
-        document.getElementById('guess').value = "";
+        guess.value = "";
 
         // adds word to list of unsolved words
         unsolvedList.push(currentWord);
@@ -151,20 +141,16 @@ function revealHandler() {
             displayWord(currentWord);
 
             // displays answer in feedback section
-            document.getElementById('feedback-column').innerHTML = `
+            fdbk.innerHTML = `
             <p>The word was ${currentWord.toUpperCase()}.</p>`;
 
-            //changes button name and id from 'reveal' to 'next word'
+            //changes reveal button and event listeners
             revBtn.innerHTML = `next word`;
-
-            // prevents user clicking reveal twice
+            revBtn.addEventListener('click', nextWordHandler);
             revBtn.removeEventListener('click', revealHandler);
 
             // prevents further shuffle clicks
             shufBtn.removeEventListener('click', shuffleHandler);
-
-            // listens for user to move to next word
-            revBtn.addEventListener('click', nextWordHandler);
 
             // prevents user entering word once revealed
             entBtn.removeEventListener('click', enterHandler);
@@ -180,7 +166,6 @@ function revealHandler() {
 
 function dockLife() {
     lives -= 1;
-    console.log(lives);
     showLives();
 }
 
@@ -203,14 +188,12 @@ function nextWordHandler() {
     newWord();
 
     // clears input field
-    document.getElementById('guess').value = "";
+    guess.value = "";
 
-    document.getElementById('feedback-column').innerHTML = `
-        <p>Generating anagram...</p>`
+    fdbk.innerHTML = `<p>Generating anagram...</p>`;
 
-    //changes button name and id from 'next word' to 'reveal'
+    //changes reveal button name and event listeners
     revBtn.innerHTML = `reveal`;
-
     revBtn.removeEventListener('click', nextWordHandler);
     revBtn.addEventListener('click', revealHandler);
 
@@ -222,8 +205,8 @@ function nextWordHandler() {
 }
 
 function enterHandler() {
-    guess = document.getElementById('guess').value;
-    checkGuess(guess);
+    let g = guess.value;
+    checkGuess(g);
 }
 
 function shuffleHandler() {
@@ -231,9 +214,9 @@ function shuffleHandler() {
     displayWord(shuffle(currentWord));
 }
 
-function displayWord(anagram) {
+function displayWord(anag) {
     // displays the anagram in the anagram display
-    document.getElementById('anagram').innerHTML = anagram;
+    anagram.innerHTML = anag;
 }
 
 // syntax for API developed from code by youtuber ByteGrad
@@ -251,69 +234,64 @@ async function getWord() {
         return word[0];
 
     } catch (error) {
-        document.getElementById('feedback-column').innerHTML = `<p>
-                Sorry, the random word generator is not working at the moment. Please try again later</p>`;
+        fdbk.innerHTML = `
+            <p>Sorry, the random word generator is not working at the moment. Please try again later</p>`;
     }
 }
 
 function shuffle(word) {
     // shuffles word received from API
     // code for random sort algorithm from https://dev.to/codebubb/how-to-shuffle-an-array-in-javascript-2ikj
-    let anagram = word.split("").sort((a, b) => 0.5 - Math.random()).join("");
+    let anag = word.split("").sort((a, b) => 0.5 - Math.random()).join("");
 
     // ensures that shuffle does not return answer
     if (anagram === word) {
         shuffle(word);
     } else {
-        return anagram;
+        return anag;
     };
 }
 
-function checkGuess(guess) {
+function checkGuess(g) {
     // checks guess against currentWord
 
-    let feedback = document.getElementById('feedback-column');
-
     // if correct
-    if (guess === currentWord) {
+    if (g === currentWord) {
 
         // clears input field
-        document.getElementById('guess').value = "";
+        guess.value = "";
 
-        feedback.innerHTML = `
-        <p>${guess.toUpperCase()} is correct!</p>`;
+        fdbk.innerHTML = `
+            <p>${g.toUpperCase()} is correct!</p>`;
 
         unscrambledList.push(currentWord);
-        console.log(unscrambledList);
 
         //increment score and display score
         incrementScore();
 
-        //changes button name and id from 'reveal' to 'next word'
-        document.getElementById('reveal').innerHTML = `next word`;
+        //changes reveal button and event listeners
+        revBtn.innerHTML = `next word`;
+        revBtn.removeEventListener('click', revealHandler);
+        revBtn.addEventListener('click', nextWordHandler);
 
         // deactivates shuffle button
         shufBtn.removeEventListener('click', shuffleHandler);
 
-        //removes reveal handler listener and adds next word handler listener
-        revBtn.removeEventListener('click', revealHandler);
-        revBtn.addEventListener('click', nextWordHandler);
-
-    } else if (guess === "") {
-        feedback.innerHTML = `
-        <p>You didn't enter a guess. Try again!</p>`;
-    } else if (guess.length < 7) {
-        feedback.innerHTML = `
-        <p>Your guess is too short. Try again!</p>`;
-    } else if (guess.split("").sort().join("") !== currentWord.split("").sort().join("")) {
-        feedback.innerHTML = `
-        <p>Your guess doesn't contain the letters of the anagram. Try again!</p>`;
+    } else if (g === "") {
+        fdbk.innerHTML = `
+            <p>You didn't enter a guess. Try again!</p>`;
+    } else if (g.length < 7) {
+        fdbk.innerHTML = `
+            <p>Your guess is too short. Try again!</p>`;
+    } else if (g.split("").sort().join("") !== currentWord.split("").sort().join("")) {
+        fdbk.innerHTML = `
+            <p>Your guess doesn't contain the letters of the anagram. Try again!</p>`;
         // } else if (guess has nonalphetical characters) {
         //     feedback.innerHTML = `
         //     <p>Your guess should only contain letters. Try again!</p>`;
     } else {
-        document.getElementById('feedback-column').innerHTML = `
-        <p>${guess.toUpperCase()} is not correct. Try again! </p>`
+        fdbk.innerHTML = `
+            <p>${g.toUpperCase()} is not correct. Try again! </p>`
 
         // check number of lives
         // if above 1, decrease
@@ -324,7 +302,7 @@ function checkGuess(guess) {
 
 function incrementScore() {
     score += 1;
-    document.getElementById('score').innerHTML = `Score: ${score}`;
+    scr.innerHTML = `Score: ${score}`;
 }
 
 function endGameHandler() {
@@ -340,36 +318,33 @@ function gameOver() {
     showLives();
 
     // displays answer in feedback section and message about no lives
-    document.getElementById('feedback-column').innerHTML = `
-    <p>The word was ${currentWord.toUpperCase()}.</p>
-    <br>
-    <p>You're out of lives!</p>
-    <br>
-    <p>Click below for a game summary</p>`;
+    fdbk.innerHTML = `
+        <p>The word was ${currentWord.toUpperCase()}.</p>
+        <br>
+        <p>You're out of lives!</p>
+        <br>
+        <p>Click below for a game summary</p>`;
 
     // displays GAME OVER in anagram display
-    let anagram = document.getElementById('anagram');
     anagram.innerHTML = 'game over';
 
     // disables input section, shuffle and reveal buttons
-    document.getElementById('guess').setAttribute('disabled', "");
+    guess.setAttribute('disabled', "");
     entBtn.removeEventListener('click', enterHandler);
     shufBtn.removeEventListener('click', shuffleHandler);
     revBtn.removeEventListener('click', revealHandler);
 
-    // changes name and id of 'end game' button to 'new game'
-    let buttonDiv = document.getElementById('game-button-div');
-    buttonDiv.innerHTML = `
-    <button id="new-game-button">
-                    new game
-                </button>
-    `;
-
-    // adds event listener to 'new game' button
-    let newGameButton = document.getElementById('new-game-button');
-    newGameButton.addEventListener('click', newGame);
+    // changes main button and event listeners
+    mainBtn.innerHTML = `game summary`;
+    mainBtn.removeEventListener('click', endGameHandler);
+    mainBtn.addEventListener('click', gameSum);
+    
 }
 
-// adds event listener to 'new game' button on landing page
-let newGameButton = document.getElementById('new-game-button');
-newGameButton.addEventListener('click', newGame);
+function gameSum() {
+    // changes main button and event listeners
+    mainBtn.innerHTML = `new game`;
+    mainBtn.removeEventListener('click', gameSum);
+    mainBtn.addEventListener('click', newGame);
+    
+}
