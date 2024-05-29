@@ -4,7 +4,16 @@ let unscrambledList = [];
 let lives = 3;
 let score = 0;
 
+//store DOM element ids in variables for later use
+
 function newGame() {
+
+    //resets all global variables
+    currentWord = "";
+    unsolvedList = [];
+    unscrambledList = [];
+    lives = 3;
+    score = 0;
 
     // replaces description and logo on landing page with gameplay section
     document.getElementById("gameplay-container").innerHTML = `
@@ -78,7 +87,7 @@ function startGame() {
 
     // adds event listener to 'end game' button
     let endGameButton = document.getElementById('end-game-button');
-    endGameButton.addEventListener('click', endGame);
+    endGameButton.addEventListener('click', gameOver);
 
     // adds event listener to 'shuffle' button
     let shuffleButton = document.getElementById('shuffle');
@@ -112,25 +121,31 @@ async function newWord() {
 }
 
 function revealHandler() {
-    // check number of lives
-    // if more than one life remaining, confirm with message
-    // if only one life remaining, confirm with end game message, and trigger endgame
-    if (confirm('Revealing the word will lose a life. \nDo you wish to proceed?')) {
+
+    let message;
+    if (lives > 1) {
+        message = 'Revealing the word will lose a life. \nDo you wish to proceed?'
+    } else {
+        message = 'Revealing the word will lose your last life and end the game. \nDo you wish to proceed?'
+    };
+    
+    if (confirm(`${message}`)) {
         // decrease a life
         dockLife();
 
         // clears input field
         document.getElementById('guess').value = "";
 
+        // adds word to list of unsolved words
+        unsolvedList.push(currentWord);
+
+        if (lives >= 1) {
         //displays answer
         displayWord(currentWord);
 
         // displays answer in feedback section
         document.getElementById('feedback-column').innerHTML = `
-            <p>The word was ${currentWord.toUpperCase()}.`;
-
-        // adds word to list of unsolved words
-        unsolvedList.push(currentWord);
+            <p>The word was ${currentWord.toUpperCase()}.</p>`;
 
         //changes button name and id from 'reveal' to 'next word'
         let revealBtn = document.getElementById('reveal');
@@ -148,6 +163,27 @@ function revealHandler() {
         // prevents user entering word once revealed
         document.getElementById('enter').removeEventListener('click', enterHandler);
 
+        } else {
+
+        //PUT THE FOLLOWING IN GAMEOVER function
+        // displays answer in feedback section and message about no lives
+        document.getElementById('feedback-column').innerHTML = `
+        <p>The word was ${currentWord.toUpperCase()}.</p>
+        <br>
+        <p>You're out of lives!</p>
+        <br>
+        <p>Click below for a game summary</p>`;
+
+        // hides 'next word' and shuffle button
+
+        // display GAME OVER in anagram box
+
+        // remove shuffle and enter listeners
+
+        // change 'end game' to 'game summary'
+
+        //add listener to game summary to trigger summary function
+        }
     } else {
         return;
     }
@@ -301,15 +337,15 @@ function incrementScore() {
     document.getElementById('score').innerHTML = `Score: ${score}`;
 }
 
-function endGame() {
-    // checks if user wants to end game
-    // Modal?
+function endGameHandler() {
+    //confirms if user wants to end game
+    //triggers gameOver()
+}
+function gameOver() {
 
     // displays GAME OVER in anagram display
     let anagram = document.getElementById('anagram');
     anagram.innerHTML = 'game over';
-
-    // changes innerHTML of feedback column and/or user input section to show game summary
 
     // changes name and id of 'end game' button to 'new game'
     let buttonDiv = document.getElementById('game-button-div');
