@@ -6,6 +6,10 @@ let score = 0;
 
 //store DOM element ids in variables for later use
 
+let shufBtn;
+let revBtn;
+let entBtn;
+
 function newGame() {
 
     //resets all global variables
@@ -56,6 +60,11 @@ function newGame() {
         </div>
     `;
 
+    // assign DOM elements to variables for later use
+    shufBtn = document.getElementById('shuffle');
+    revBtn = document.getElementById('reveal');
+    entBtn = document.getElementById('enter');
+
     //changes button name and id from 'new game' to 'start game'
     let buttonDiv = document.getElementById('game-button-div');
     buttonDiv.innerHTML = `
@@ -90,15 +99,13 @@ function startGame() {
     endGameButton.addEventListener('click', endGameHandler);
 
     // adds event listener to 'shuffle' button
-    let shuffleButton = document.getElementById('shuffle');
-    shuffleButton.addEventListener('click', shuffleHandler);
+    shufBtn.addEventListener('click', shuffleHandler);
 
     // adds event listener to 'reveal' button
-    let revealButton = document.getElementById('reveal');
-    revealButton.addEventListener('click', revealHandler);
+    revBtn.addEventListener('click', revealHandler);
 
     // adds event listener to 'enter' button
-    document.getElementById('enter').addEventListener('click', enterHandler);
+    entBtn.addEventListener('click', enterHandler);
 
     // // adds event listener for Enter key
     // let form = document.getElementsByTag('form');
@@ -148,20 +155,19 @@ function revealHandler() {
             <p>The word was ${currentWord.toUpperCase()}.</p>`;
 
             //changes button name and id from 'reveal' to 'next word'
-            let revealBtn = document.getElementById('reveal');
-            revealBtn.innerHTML = `next word`;
+            revBtn.innerHTML = `next word`;
 
             // prevents user clicking reveal twice
-            revealBtn.removeEventListener('click', revealHandler);
+            revBtn.removeEventListener('click', revealHandler);
 
             // prevents further shuffle clicks
-            document.getElementById('shuffle').removeEventListener('click', shuffleHandler);
+            shufBtn.removeEventListener('click', shuffleHandler);
 
             // listens for user to move to next word
-            revealBtn.addEventListener('click', nextWordHandler);
+            revBtn.addEventListener('click', nextWordHandler);
 
             // prevents user entering word once revealed
-            document.getElementById('enter').removeEventListener('click', enterHandler);
+            entBtn.removeEventListener('click', enterHandler);
 
         } else {
             gameOver();
@@ -203,17 +209,16 @@ function nextWordHandler() {
         <p>Generating anagram...</p>`
 
     //changes button name and id from 'next word' to 'reveal'
-    let revealBtn = document.getElementById('reveal');
-    revealBtn.innerHTML = `reveal`;
+    revBtn.innerHTML = `reveal`;
 
-    revealBtn.removeEventListener('click', nextWordHandler);
-    revealBtn.addEventListener('click', revealHandler);
+    revBtn.removeEventListener('click', nextWordHandler);
+    revBtn.addEventListener('click', revealHandler);
 
     // reinstates shuffle event listener
-    document.getElementById('shuffle').addEventListener('click', shuffleHandler);
+    shufBtn.addEventListener('click', shuffleHandler);
 
     // reinstates enter event listener
-    document.getElementById('enter').addEventListener('click', enterHandler);
+    entBtn.addEventListener('click', enterHandler);
 }
 
 function enterHandler() {
@@ -288,11 +293,11 @@ function checkGuess(guess) {
         document.getElementById('reveal').innerHTML = `next word`;
 
         // deactivates shuffle button
-        document.getElementById('shuffle').removeEventListener('click', shuffleHandler);
+        shufBtn.removeEventListener('click', shuffleHandler);
 
         //removes reveal handler listener and adds next word handler listener
-        document.getElementById('reveal').removeEventListener('click', revealHandler);
-        document.getElementById('reveal').addEventListener('click', nextWordHandler);
+        revBtn.removeEventListener('click', revealHandler);
+        revBtn.addEventListener('click', nextWordHandler);
 
     } else if (guess === "") {
         feedback.innerHTML = `
@@ -348,9 +353,9 @@ function gameOver() {
 
     // disables input section, shuffle and reveal buttons
     document.getElementById('guess').setAttribute('disabled', "");
-    document.getElementById('enter').removeEventListener('click', enterHandler);
-    document.getElementById('shuffle').removeEventListener('click', shuffleHandler);
-    document.getElementById('reveal').removeEventListener('click', revealHandler);
+    entBtn.removeEventListener('click', enterHandler);
+    shufBtn.removeEventListener('click', shuffleHandler);
+    revBtn.removeEventListener('click', revealHandler);
 
     // changes name and id of 'end game' button to 'new game'
     let buttonDiv = document.getElementById('game-button-div');
