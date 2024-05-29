@@ -107,7 +107,7 @@ h4 {
     padding: 20px;
     height: 35vh;
     background-color: #8e8e8e;
-    font-size: 120%;
+    font-size: 150%;
 }
 
 #guess-box {
@@ -180,90 +180,94 @@ i {
     #spacer {
         height: 20%;
     }
-}
-
-/* For mobile screens of 576px width and less */
-
-@media screen and (max-width: 576px) {
-
-    #title-logo,
-    #instructions-link,
-    #about-link,
-    #copyright {
-        text-align: center;
-    }
-
-    #title-logo {
-        padding: 0;
-        font-size: 200%;
-    }
-
-    #instructions-link {
-        padding-right: 0;
-        padding-top: 0;
-        font-size: 100%;
-    }
-
-    #about-link,
-    #copyright {
-        font-size: 100%;
-    }
-
-    #header-container {
-        height: 10vh;
-    }
-
-    #anagram-container {
-        margin: 3vh 0 2vh 0;
-    }
-
-    #gameplay-container {
-        height: 55vh;
-    }
-
-    #game-button-container {
-        height: 12vh;
-        margin-top: 3vh;
-    }
-
-    #anagram {
-        font-size: 4vh;
-        letter-spacing: .4rem;
-        padding-left: .4rem;
-    }
 
     #user-input-column,
     #feedback-column {
-        height: 25vh;
-        font-size: 100%;
+        font-size: 120%;
     }
 
-    #feedback-column {
-        height: 28vh;
-        margin-top: 2vh;
+    /* For mobile screens of 576px width and less */
+
+    @media screen and (max-width: 576px) {
+
+        #title-logo,
+        #instructions-link,
+        #about-link,
+        #copyright {
+            text-align: center;
+        }
+
+        #title-logo {
+            padding: 0;
+            font-size: 200%;
+        }
+
+        #instructions-link {
+            padding-right: 0;
+            padding-top: 0;
+            font-size: 100%;
+        }
+
+        #about-link,
+        #copyright {
+            font-size: 100%;
+        }
+
+        #header-container {
+            height: 10vh;
+        }
+
+        #anagram-container {
+            margin: 3vh 0 2vh 0;
+        }
+
+        #gameplay-container {
+            height: 55vh;
+        }
+
+        #game-button-container {
+            height: 12vh;
+            margin-top: 3vh;
+        }
+
+        #anagram {
+            font-size: 4vh;
+            letter-spacing: .4rem;
+            padding-left: .4rem;
+        }
+
+        #user-input-column,
+        #feedback-column {
+            height: 25vh;
+            font-size: 100%;
+        }
+
+        #feedback-column {
+            height: 28vh;
+            margin-top: 2vh;
+        }
+
+        #spacer {
+            height: 10%;
+        }
+
     }
 
-    #spacer {
-        height: 10%;
+    /* For mobile screens of 350px width and less */
+
+    @media screen and (max-width: 350px) {
+        #anagram {
+            font-size: 3vh;
+            letter-spacing: .3rem;
+            padding-left: .3rem;
+        }
+
+        #user-input-column,
+        #feedback-column {
+            padding: 10px;
+        }
+
+        #spacer {
+            height: 0;
+        }
     }
-
-}
-
-/* For mobile screens of 350px width and less */
-
-@media screen and (max-width: 350px) {
-    #anagram {
-        font-size: 3vh;
-        letter-spacing: .3rem;
-        padding-left: .3rem;
-    }
-
-    #user-input-column,
-    #feedback-column {
-        padding: 10px;
-    }
-
-    #spacer {
-        height: 0;
-    }
-}

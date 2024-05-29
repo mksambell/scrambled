@@ -38,7 +38,7 @@ function newGame() {
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6 col-sm-8 col-xs-10 mx-auto">
+                    <div class="col-xs-10 mx-auto">
                         <div class="row">
                             <div id="shuffle-container" class="col-6 text-center">
                                 <button id="shuffle">shuffle</button>
@@ -327,13 +327,36 @@ function gameOver() {
 }
 
 function gameSum() {
+
     // changes main button and event listeners
     mainBtn.innerHTML = `new game`;
     mainBtn.removeEventListener('click', gameSum);
     mainBtn.addEventListener('click', newGame);
     
-    document.getElementById('user-input-column').innerHTML = `
-        <div id="logo-container" class="text-center">
-            <img id="logo" class="img-fluid mx-auto" src="assets/images/scribble.png" alt="scrambled logo">
-        </div>`;
+    // displays score and list of unscrambled words
+    let userCol = document.getElementById('user-input-column');
+
+    if (unscrambledList.length === 1) {
+        userCol.innerHTML = `<p>You unscrambled 1 word.<p>
+        <br>
+        <p>UNSCRAMBLED: ${unscrambledList.toString()}</p>
+        `;
+    } else if (score === 0) {
+        userCol.innerHTML = `<p>You unscrambled 0 words.</p>`;
+    } else {
+        userCol.innerHTML = `<p>You unscrambled ${score} words.</p>
+        <br>
+        <p>UNSCRAMBLED: ${unscrambledList.toString()}</p>`;
+    }
+
+    // displays unsolved words in feedback column
+    if (unsolvedList.length === 0) {
+        fdbk.innerHTML = `
+            <p>There were no unsolved words!</p>`;
+    } else {
+        fdbk.innerHTML = `
+            <p>There were ${unsolvedList.length} unsolved words.</p>
+            <br>
+            <p>UNSOLVED: ${unsolvedList.toString()}</p>`;
+    }
 }
