@@ -87,7 +87,7 @@ function startGame() {
 
     // adds event listener to 'end game' button
     let endGameButton = document.getElementById('end-game-button');
-    endGameButton.addEventListener('click', gameOver);
+    endGameButton.addEventListener('click', endGameHandler);
 
     // adds event listener to 'shuffle' button
     let shuffleButton = document.getElementById('shuffle');
@@ -128,7 +128,7 @@ function revealHandler() {
     } else {
         message = 'Revealing the word will lose your last life and end the game. \nDo you wish to proceed?'
     };
-    
+
     if (confirm(`${message}`)) {
         // decrease a life
         dockLife();
@@ -140,49 +140,32 @@ function revealHandler() {
         unsolvedList.push(currentWord);
 
         if (lives >= 1) {
-        //displays answer
-        displayWord(currentWord);
+            //displays answer
+            displayWord(currentWord);
 
-        // displays answer in feedback section
-        document.getElementById('feedback-column').innerHTML = `
+            // displays answer in feedback section
+            document.getElementById('feedback-column').innerHTML = `
             <p>The word was ${currentWord.toUpperCase()}.</p>`;
 
-        //changes button name and id from 'reveal' to 'next word'
-        let revealBtn = document.getElementById('reveal');
-        revealBtn.innerHTML = `next word`;
+            //changes button name and id from 'reveal' to 'next word'
+            let revealBtn = document.getElementById('reveal');
+            revealBtn.innerHTML = `next word`;
 
-        // prevents user clicking reveal twice
-        revealBtn.removeEventListener('click', revealHandler);
+            // prevents user clicking reveal twice
+            revealBtn.removeEventListener('click', revealHandler);
 
-        // prevents further shuffle clicks
-        document.getElementById('shuffle').removeEventListener('click', shuffleHandler);
+            // prevents further shuffle clicks
+            document.getElementById('shuffle').removeEventListener('click', shuffleHandler);
 
-        // listens for user to move to next word
-        revealBtn.addEventListener('click', nextWordHandler);
+            // listens for user to move to next word
+            revealBtn.addEventListener('click', nextWordHandler);
 
-        // prevents user entering word once revealed
-        document.getElementById('enter').removeEventListener('click', enterHandler);
+            // prevents user entering word once revealed
+            document.getElementById('enter').removeEventListener('click', enterHandler);
 
         } else {
+            gameOver();
 
-        //PUT THE FOLLOWING IN GAMEOVER function
-        // displays answer in feedback section and message about no lives
-        document.getElementById('feedback-column').innerHTML = `
-        <p>The word was ${currentWord.toUpperCase()}.</p>
-        <br>
-        <p>You're out of lives!</p>
-        <br>
-        <p>Click below for a game summary</p>`;
-
-        // hides 'next word' and shuffle button
-
-        // display GAME OVER in anagram box
-
-        // remove shuffle and enter listeners
-
-        // change 'end game' to 'game summary'
-
-        //add listener to game summary to trigger summary function
         }
     } else {
         return;
@@ -196,16 +179,18 @@ function dockLife() {
 }
 
 function showLives() {
-    if (lives === 2) {
+    if (lives < 3) {
         document.getElementById('life3').classList.remove('fa-solid');
         document.getElementById('life3').classList.add('fa-regular');
-    } else if (lives === 1) {
+    };
+    if (lives < 2) {
         document.getElementById('life2').classList.remove('fa-solid');
         document.getElementById('life2').classList.add('fa-regular');
-    } else {
+    };
+    if (lives < 1) {
         document.getElementById('life1').classList.remove('fa-solid');
         document.getElementById('life1').classList.add('fa-regular');
-    }
+    };
 }
 
 function nextWordHandler() {
@@ -318,9 +303,9 @@ function checkGuess(guess) {
     } else if (guess.split("").sort().join("") !== currentWord.split("").sort().join("")) {
         feedback.innerHTML = `
         <p>Your guess doesn't contain the letters of the anagram. Try again!</p>`;
-    // } else if (guess has nonalphetical characters) {
-    //     feedback.innerHTML = `
-    //     <p>Your guess should only contain letters. Try again!</p>`;
+        // } else if (guess has nonalphetical characters) {
+        //     feedback.innerHTML = `
+        //     <p>Your guess should only contain letters. Try again!</p>`;
     } else {
         document.getElementById('feedback-column').innerHTML = `
         <p>${guess.toUpperCase()} is not correct. Try again! </p>`
@@ -338,14 +323,34 @@ function incrementScore() {
 }
 
 function endGameHandler() {
-    //confirms if user wants to end game
-    //triggers gameOver()
+    if (confirm('This will end the current game. \nAre you sure?')) {
+        gameOver();
+    } else {
+        return;
+    }
 }
+
 function gameOver() {
+    lives = 0;
+    showLives();
+
+    // displays answer in feedback section and message about no lives
+    document.getElementById('feedback-column').innerHTML = `
+    <p>The word was ${currentWord.toUpperCase()}.</p>
+    <br>
+    <p>You're out of lives!</p>
+    <br>
+    <p>Click below for a game summary</p>`;
 
     // displays GAME OVER in anagram display
     let anagram = document.getElementById('anagram');
     anagram.innerHTML = 'game over';
+
+    // disables input section, shuffle and reveal buttons
+    document.getElementById('guess').setAttribute('disabled', "");
+    document.getElementById('enter').removeEventListener('click', enterHandler);
+    document.getElementById('shuffle').removeEventListener('click', shuffleHandler);
+    document.getElementById('reveal').removeEventListener('click', revealHandler);
 
     // changes name and id of 'end game' button to 'new game'
     let buttonDiv = document.getElementById('game-button-div');
@@ -358,7 +363,6 @@ function gameOver() {
     // adds event listener to 'new game' button
     let newGameButton = document.getElementById('new-game-button');
     newGameButton.addEventListener('click', newGame);
-
 }
 
 // adds event listener to 'new game' button on landing page
