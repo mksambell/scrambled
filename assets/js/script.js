@@ -3,6 +3,7 @@ let unsolvedList = [];
 let unscrambledList = [];
 let lives = 3;
 let score = 0;
+let crtWordInfo;
 
 //stores DOM element in variables for later use
 
@@ -100,13 +101,39 @@ async function newWord() {
 
     currentWord = await getWord();
     displayWord(shuffle(currentWord));
-    fdbk.innerHTML = `<p>Guess away!</p>`
+    fdbk.innerHTML = `<p>Guess away!</p>`;
 
     // add event listeners to gameplay buttons
     shufBtn.addEventListener('click', shuffleHandler);
     revBtn.addEventListener('click', revealHandler);
     entBtn.addEventListener('click', enterHandler);
     mainBtn.addEventListener('click', endGameHandler);
+
+    // call getWordInfo function and store in variable
+    crtWordInfo = await getWordInfo();
+    console.log(crtWordInfo);
+}
+
+async function getWordInfo() {
+
+    let URL = `https://api.dictionaryapi.dev/api/v2/entries/en/${currentWord}`;
+
+    try {
+        const response = await fetch(URL);
+        let data = await response.json();
+
+        if (!response.ok) {
+            console.log(response.description);
+            return;
+        };
+
+        return data;
+
+    } catch (error) {
+        fdbk.innerHTML = `
+            <p>Sorry, the dictionary is not working at the moment.</p>`;
+    }
+
 }
 
 function revealHandler() {
@@ -149,7 +176,6 @@ function revealHandler() {
 
         } else {
             gameOver();
-
         }
     } else {
         return;
@@ -271,9 +297,6 @@ function checkGuess(g) {
     } else if (g.split("").sort().join("") !== currentWord.split("").sort().join("")) {
         fdbk.innerHTML = `
             <p>Your guess doesn't contain the letters of the anagram. Try again!</p>`;
-        // } else if (guess has nonalphetical characters) {
-        //     feedback.innerHTML = `
-        //     <p>Your guess should only contain letters. Try again!</p>`;
     } else {
         if (lives > 1) {
             fdbk.innerHTML = `

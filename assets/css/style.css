@@ -100,11 +100,23 @@ h4 {
     background-color: #a9a9a6;
 }
 
+#enter:hover,
+#shuffle:hover,
+#reveal:hover {
+    background-color: #ffb30f;
+    transition: .4s;
+}
+
 #mainBtn {
     font-size: 1.5rem;
     border: solid 3px #353535;
     border-radius: 5px;
     background-color: #ffb30f;
+}
+
+#mainBtn:hover {
+    background-color: #db324b;
+    transition: .4s;
 }
 
 /* ------------------------------------   Gameplay sections */
