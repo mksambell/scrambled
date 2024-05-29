@@ -332,4 +332,8 @@ function gameSum() {
     mainBtn.removeEventListener('click', gameSum);
     mainBtn.addEventListener('click', newGame);
     
+    document.getElementById('user-input-column').innerHTML = `
+        <div id="logo-container" class="text-center">
+            <img id="logo" class="img-fluid mx-auto" src="assets/images/scribble.png" alt="scrambled logo">
+        </div>`;
 }
