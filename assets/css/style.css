@@ -91,6 +91,15 @@ h4 {
     font-weight: 400;
 }
 
+#enter,
+#shuffle,
+#reveal {
+    font-size: 1.2rem;
+    border: solid 2px #353535;
+    border-radius: 5px;
+    background-color: #a9a9a6;
+}
+
 #mainBtn {
     font-size: 1.5rem;
     border: solid 3px #353535;

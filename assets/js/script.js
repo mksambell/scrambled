@@ -34,7 +34,7 @@ function newGame() {
                     <div id="guess-box" class="col-12 text-center">
                         <label for="guess">Guess:</label>
                         <input id="guess" type="text" name="guess" maxlength="7" minlength="7">
-                        <button id="enter">Enter</button>
+                        <button id="enter">enter</button>
                     </div>
                 </div>
                 <div class="row">
