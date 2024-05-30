@@ -17,6 +17,7 @@ let anagram = document.getElementById('anagram');
 let mainBtn = document.getElementById('mainBtn');
 
 mainBtn.addEventListener('click', newGame);
+document.getElementById('title-link').addEventListener('click', checkLeave);
 
 function newGame() {
 
@@ -34,7 +35,7 @@ function newGame() {
                 <div class="row">
                     <div id="guess-box" class="col-12 text-center">
                         <label for="guess">Guess:</label>
-                        <input id="guess" type="text" name="guess" maxlength="7" minlength="7">
+                        <input id="guess" type="text" name="guess" maxlength="7" minlength="7" autocomplete="off">
                         <button id="enter">enter</button>
                     </div>
                 </div>
@@ -256,7 +257,7 @@ function shuffle(word) {
     let anag = word.split("").sort((a, b) => 0.5 - Math.random()).join("");
 
     // ensures that shuffle does not return answer
-    if (anagram === word) {
+    if (anag === word) {
         shuffle(word);
     } else {
         return anag;
@@ -381,5 +382,13 @@ function gameSum() {
             <p>There were ${unsolvedList.length} unsolved words.</p>
             <br>
             <p>UNSOLVED: ${unsolvedList.toString()}</p>`;
+    }
+}
+
+function checkLeave(event) {
+    if(confirm('This will take you back to the home page.\n\nIt will end the current game and lose game data.\n\nAre you sure you want to proceed?')) {
+        return;
+    } else {
+        event.preventDefault();
     }
 }
