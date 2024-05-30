@@ -20,8 +20,9 @@ let scr;
 let anagram = document.getElementById('anagram');
 let mainBtn = document.getElementById('mainBtn');
 
-// adds listener to new game button
+// adds listener to new game button and add focus
 mainBtn.addEventListener('click', newGame);
+mainBtn.focus();
 
 // adds listener to title-logo anchor
 document.getElementById('title-link').addEventListener('click', checkLeave);
@@ -119,11 +120,14 @@ function startGame() {
 
 async function newWord() {
 
-    currentWord = await getWord();
-    displayWord(shuffle(currentWord));
+    // shifts focus to input box
+    guess.focus();
 
     // resets guessList for new word
     guessList = [];
+
+    currentWord = await getWord();
+    displayWord(shuffle(currentWord));
 
     fdbk.innerHTML = `<p>Guess away!</p>`;
 
@@ -131,6 +135,12 @@ async function newWord() {
     shufBtn.addEventListener('click', shuffleHandler);
     revBtn.addEventListener('click', revealHandler);
     entBtn.addEventListener('click', enterHandler);
+    guess.addEventListener('keypress', function(event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            enterHandler();
+        };
+    });
     mainBtn.addEventListener('click', endGameHandler);
 
     // call getWordInfo function and store in variable
