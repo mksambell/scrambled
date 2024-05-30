@@ -119,6 +119,16 @@ h4 {
     transition: .4s;
 }
 
+#btn-group {
+    width: 300px;
+    margin-top: 2vh;
+    background-color: #8e8e8e;
+}
+
+.btn-check {
+    border-width: 2px;
+}
+
 /* ------------------------------------   Gameplay sections */
 
 #user-input-column,
@@ -206,6 +216,7 @@ i {
     #feedback-column {
         font-size: 120%;
     }
+}
 
     /* For mobile screens of 576px width and less */
 

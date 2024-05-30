@@ -1,11 +1,14 @@
+// variables used throughout gameplay
+
 let currentWord;
 let unsolvedList = [];
 let unscrambledList = [];
 let lives = 3;
 let score = 0;
 let crtWordInfo;
+let worLen;
 
-//stores DOM element in variables for later use
+//DOM elements stored in variables for later use (some populated in newGame())
 
 let shufBtn;
 let revBtn;
@@ -28,6 +31,18 @@ function newGame() {
     lives = 3;
     score = 0;
 
+    // checks what word length user has selected
+    if (document.getElementById('btn5').checked) {
+        worLen = 5;
+    } else if (document.getElementById('btn6').checked) {
+        worLen = 6;
+    } else {
+        worLen = 7;
+    };
+
+    // hides options for word length
+    document.getElementById('btn-group').classList.add("d-none");
+
     // replaces description and logo on landing page with gameplay section
     document.getElementById("gameplay-container").innerHTML = `
     <div class="row">
@@ -35,7 +50,7 @@ function newGame() {
                 <div class="row">
                     <div id="guess-box" class="col-12 text-center">
                         <label for="guess">Guess:</label>
-                        <input id="guess" type="text" name="guess" maxlength="7" minlength="7" autocomplete="off">
+                        <input id="guess" type="text" name="guess" autocomplete="off">
                         <button id="enter">enter</button>
                     </div>
                 </div>
@@ -168,7 +183,7 @@ function revealHandler() {
             revBtn.innerHTML = `next word`;
             revBtn.removeEventListener('click', revealHandler);
             revBtn.addEventListener('click', nextWordHandler);
-            
+
             // prevents further shuffle clicks
             shufBtn.removeEventListener('click', shuffleHandler);
 
@@ -235,7 +250,7 @@ function displayWord(anag) {
 async function getWord() {
 
     try {
-        const response = await fetch('https://random-word-api.herokuapp.com/word?lang=en&length=7');
+        const response = await fetch(`https://random-word-api.herokuapp.com/word?lang=en&length=${worLen}`);
         let word = await response.json();
 
         if (!response.ok) {
@@ -292,9 +307,12 @@ function checkGuess(g) {
     } else if (g === "") {
         fdbk.innerHTML = `
             <p>You didn't enter a guess. Try again!</p>`;
-    } else if (g.length < 7) {
+    } else if (g.length < worLen) {
         fdbk.innerHTML = `
             <p>Your guess is too short. Try again!</p>`;
+    } else if (g.length > worLen) {
+        fdbk.innerHTML = `
+                <p>Your guess is too long. Try again!</p>`;
     } else if (g.split("").sort().join("") !== currentWord.split("").sort().join("")) {
         fdbk.innerHTML = `
             <p>Your guess doesn't contain the letters of the anagram. Try again!</p>`;
@@ -304,6 +322,9 @@ function checkGuess(g) {
                 <p>${g.toUpperCase()} is not correct. Try again! </p>`;
             dockLife();
         } else {
+            // adds word to list of unsolved words
+            unsolvedList.push(currentWord);
+
             gameOver();
         }
     }
@@ -316,6 +337,7 @@ function incrementScore() {
 
 function endGameHandler() {
     if (confirm('This will end the current game. \nAre you sure?')) {
+        unsolvedList.push(currentWord);
         gameOver();
     } else {
         return;
@@ -347,7 +369,7 @@ function gameOver() {
     mainBtn.innerHTML = `game summary`;
     mainBtn.removeEventListener('click', endGameHandler);
     mainBtn.addEventListener('click', gameSum);
-    
+
 }
 
 function gameSum() {
@@ -356,7 +378,10 @@ function gameSum() {
     mainBtn.innerHTML = `new game`;
     mainBtn.removeEventListener('click', gameSum);
     mainBtn.addEventListener('click', newGame);
-    
+
+    // displays options for word length for new game
+    document.getElementById('btn-group').classList.remove("d-none");
+
     // displays score and list of unscrambled words
     let userCol = document.getElementById('user-input-column');
 
@@ -386,7 +411,7 @@ function gameSum() {
 }
 
 function checkLeave(event) {
-    if(confirm('This will take you back to the home page.\n\nIt will end the current game and lose game data.\n\nAre you sure you want to proceed?')) {
+    if (confirm('This will take you back to the home page.\n\nIt will end the current game and lose game data.\n\nAre you sure you want to proceed?')) {
         return;
     } else {
         event.preventDefault();
