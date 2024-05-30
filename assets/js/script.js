@@ -7,8 +7,9 @@ let lives = 3;
 let score = 0;
 let crtWordInfo;
 let worLen;
+let guessList = [];
 
-//DOM elements stored in variables for later use (some populated in newGame())
+//DOM elements stored in variables for later use (most assigned in newGame())
 
 let shufBtn;
 let revBtn;
@@ -19,7 +20,10 @@ let scr;
 let anagram = document.getElementById('anagram');
 let mainBtn = document.getElementById('mainBtn');
 
+// adds listener to new game button
 mainBtn.addEventListener('click', newGame);
+
+// adds listener to title-logo anchor
 document.getElementById('title-link').addEventListener('click', checkLeave);
 
 function newGame() {
@@ -117,6 +121,10 @@ async function newWord() {
 
     currentWord = await getWord();
     displayWord(shuffle(currentWord));
+
+    // resets guessList for new word
+    guessList = [];
+
     fdbk.innerHTML = `<p>Guess away!</p>`;
 
     // add event listeners to gameplay buttons
@@ -316,11 +324,16 @@ function checkGuess(g) {
     } else if (g.split("").sort().join("") !== currentWord.split("").sort().join("")) {
         fdbk.innerHTML = `
             <p>Your guess doesn't contain the letters of the anagram. Try again!</p>`;
+    } else if (guessList.includes(g)) {
+        fdbk.innerHTML = `
+            <p>You've already guessed this. Try again!</p>`;
+            console.log(guessList);
     } else {
         if (lives > 1) {
             fdbk.innerHTML = `
                 <p>${g.toUpperCase()} is not correct. Try again! </p>`;
             dockLife();
+            guessList.push(g);
         } else {
             // adds word to list of unsolved words
             unsolvedList.push(currentWord);
