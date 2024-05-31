@@ -256,7 +256,8 @@ function enterHandler() {
 
 function shuffleHandler() {
     //handles shuffle button click
-    displayWord(shuffle(currentWord));
+    let a = shuffle(currentWord);
+    displayWord(a);
 }
 
 function displayWord(anag) {
@@ -288,9 +289,11 @@ function shuffle(word) {
     // shuffles word received from API
     // code for random sort algorithm from https://dev.to/codebubb/how-to-shuffle-an-array-in-javascript-2ikj
     let anag = word.split("").sort((a, b) => 0.5 - Math.random()).join("");
+    console.log(anag);
 
     // ensures that shuffle does not return answer
     if (anag === word) {
+        console.log(anag);
         shuffle(word);
     } else {
         return anag;
