@@ -250,7 +250,8 @@ function nextWordHandler() {
 }
 
 function enterHandler() {
-    let g = guess.value;
+    let g = guess.value.toLowerCase();
+    console.log(g);
     checkGuess(g);
 }
 
