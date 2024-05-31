@@ -256,13 +256,9 @@ i {
             margin: 3vh 0 2vh 0;
         }
 
-        #gameplay-container {
-            height: 55vh;
-        }
-
         #game-button-container {
-            height: 12vh;
-            margin-top: 3vh;
+            height: 19vh;
+            margin-top: 1vh;
         }
 
         #anagram {
