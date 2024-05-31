@@ -73,12 +73,12 @@ function newGame() {
                 </div>
                 <div id="spacer"></div>
                 <div class="row">
-                    <div id="lives" class="col-md col-sm-12 text-center">
+                    <div id="lives" class="col text-center">
                         <i id="life1" class="fa-solid fa-heart life"></i>
                         <i id="life2" class="fa-solid fa-heart life"></i>
                         <i id="life3" class="fa-solid fa-heart life"></i>
                     </div>
-                    <div id="score-container" class="col-md col-sm-12 text-center">
+                    <div id="score-container" class="col text-center">
                         <p id="score">Score: 0</p>
                     </div>
                 </div>

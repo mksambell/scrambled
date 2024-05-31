@@ -199,9 +199,10 @@ i {
 
 @media screen and (max-width: 768px) {
     body {
+        /* to fix issue in iOS where address bar did not disappear */
         height: 101vh;
     }
-    
+
     #anagram {
         font-size: 6vh;
         letter-spacing: .6rem;
@@ -258,12 +259,17 @@ i {
         }
 
         #anagram-container {
+            height: 6vh;
             margin: 3vh 0 2vh 0;
         }
 
         #game-button-container {
-            height: 19vh;
+            height: 9vh;
             margin-top: 1vh;
+        }
+
+        #gameplay-container {
+            height: 60vh;
         }
 
         #anagram {
@@ -272,14 +278,16 @@ i {
             padding-left: .4rem;
         }
 
-        #user-input-column,
-        #feedback-column {
-            height: 25vh;
+        #user-input-column {
+            height: 30vh;
             font-size: 100%;
+            padding: 10px;
         }
 
         #feedback-column {
-            height: 28vh;
+            height: 25vh;
+            font-size: 100%;
+            padding: 10px;
             margin-top: 2vh;
         }
 
