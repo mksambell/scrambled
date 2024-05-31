@@ -104,12 +104,14 @@ h4 {
 #shuffle:hover,
 #reveal:hover {
     background-color: #ffb30f;
+    color: #353535;
     transition: .4s;
 }
 
 #mainBtn {
     font-size: 1.5rem;
     border: solid 3px #353535;
+    color: #353535;
     border-radius: 5px;
     background-color: #ffb30f;
 }
