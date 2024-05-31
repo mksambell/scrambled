@@ -4,7 +4,6 @@ body {
     color: #353535;
     max-width: 1600px;
     margin: 0 auto;
-    overflow-y: hidden;
 }
 
 h1,
@@ -199,6 +198,10 @@ i {
 /* For mobile screens of 768px width and less */
 
 @media screen and (max-width: 768px) {
+    body {
+        height: 101vh;
+    }
+    
     #anagram {
         font-size: 6vh;
         letter-spacing: .6rem;
