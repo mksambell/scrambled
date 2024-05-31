@@ -4,7 +4,7 @@ body {
     color: #353535;
     max-width: 1600px;
     margin: 0 auto;
-    overflow-y: scroll;
+    overflow-y: hidden;
 }
 
 h1,
@@ -100,6 +100,7 @@ h4 {
     border-radius: 5px;
     background-color: #a9a9a6;
     color: #353535;
+    outline: none;
 }
 
 #enter:hover,
@@ -115,6 +116,7 @@ h4 {
     color: #353535;
     border-radius: 5px;
     background-color: #ffb30f;
+    outline: none;
 }
 
 #mainBtn:hover {
