@@ -4,6 +4,7 @@ body {
     color: #353535;
     max-width: 1600px;
     margin: 0 auto;
+    overflow-y: scroll;
 }
 
 h1,
@@ -98,13 +99,13 @@ h4 {
     border: solid 2px #353535;
     border-radius: 5px;
     background-color: #a9a9a6;
+    color: #353535;
 }
 
 #enter:hover,
 #shuffle:hover,
 #reveal:hover {
     background-color: #ffb30f;
-    color: #353535;
     transition: .4s;
 }
 
