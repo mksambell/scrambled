@@ -50,40 +50,45 @@ function newGame() {
 
     // replaces description and logo on landing page with gameplay section
     document.getElementById("gameplay-container").innerHTML = `
-    <div class="row">
-            <div id="user-input-column" class="col-sm-5 col-10 mx-auto">
-                <div class="row">
+        <div class="row">
+            <div id="user-input-column" class="col-sm-5 col-10 mx-auto text-center">
+                <div class="row mx-auto">
                     <div id="guess-box" class="col-12 text-center">
                         <label for="guess">Guess:</label>
                         <input id="guess" type="text" name="guess" autocomplete="off">
-                        <button id="enter">enter</button>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-xs-10 mx-auto">
+                <div class="row mx-auto">
+                    <div class="col-xs-10">
                         <div class="row">
-                            <div id="shuffle-container" class="col-6 text-center">
+                            <div id="shuffle-container" class="col-4 text-center">
                                 <button id="shuffle">shuffle</button>
                             </div>
-                            <div id="reveal-container" class="col-6 text-center">
+                            <div id="reveal-container" class="col-4 text-center">
                                 <button id="reveal">reveal</button>
+                            </div>
+                            <div id="enter-container" class="col-4 text-center">
+                                <button id="enter">enter</button>
                             </div>
                         </div>
                     </div> 
                 </div>
-                <div id="spacer"></div>
-                <div class="row">
-                    <div id="lives" class="col text-center">
-                        <i id="life1" class="fa-solid fa-heart life"></i>
-                        <i id="life2" class="fa-solid fa-heart life"></i>
-                        <i id="life3" class="fa-solid fa-heart life"></i>
-                    </div>
-                    <div id="score-container" class="col text-center">
-                        <p id="score">Score: 0</p>
+                <div class="row mx-auto">
+                    <div class="col-xs-10">
+                        <div class="row">
+                            <div id="lives" class="col-6">
+                                <i id="life1" class="fa-solid fa-heart life"></i>
+                                <i id="life2" class="fa-solid fa-heart life"></i>
+                                <i id="life3" class="fa-solid fa-heart life"></i>
+                            </div>
+                            <div id="score-container" class="col-6">
+                                <p id="score">Score: 0</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div id="feedback-column" class="col-sm-5 col-10 mx-auto">
+            <div id="feedback-column" class="col-sm-5 col-10 mx-auto text-center">
                 <p>Click 'start game' to display the first anagram</p>
             </div>
         </div>
@@ -103,7 +108,7 @@ function newGame() {
     mainBtn.addEventListener('click', startGame);
 
     // displays GOOD LUCK in anagram display
-    anagram.innerHTML = 'good luck';
+    // anagram.innerHTML = 'good luck';
 }
 
 function startGame() {

@@ -91,6 +91,11 @@ h4 {
     font-weight: 400;
 }
 
+#guess {
+    margin: 2vh 0;
+    width: 50%;
+}
+
 #enter,
 #shuffle,
 #reveal {
@@ -100,6 +105,7 @@ h4 {
     background-color: #a9a9a6;
     color: #353535;
     outline: none;
+    margin-bottom: 2vh;
 }
 
 #enter:hover,
@@ -149,19 +155,14 @@ h4 {
     padding-bottom: 10px;
 }
 
-#guess {
-    width: 50%;
+#lives {
+    padding: 0;
 }
 
 #lives,
 i {
     font-size: 2rem;
-    margin: 3px;
     color: #db324b;
-}
-
-#spacer {
-    height: 30%;
 }
 
 #score-container {
@@ -170,7 +171,6 @@ i {
 
 #score {
     margin-bottom: 0;
-    margin-top: 10px;
 }
 
 /* ------------------------------------   Footer */
@@ -199,7 +199,7 @@ i {
 
 @media screen and (max-width: 768px) {
     body {
-        /* to fix issue in iOS where address bar did not disappear */
+        /* to fix issue in iOS where address bar does not disappear */
         height: 101vh;
     }
 
@@ -213,105 +213,107 @@ i {
         width: 70%;
     }
 
-    #enter {
-        margin-top: 10px;
-    }
-
-    #spacer {
-        height: 20%;
-    }
-
     #user-input-column,
     #feedback-column {
         font-size: 120%;
     }
+
+    #lives,
+    i {
+        font-size: 1.6rem;
+    }
 }
 
-    /* For mobile screens of 576px width and less */
+/* For mobile screens of 576px width and less */
 
-    @media screen and (max-width: 576px) {
+@media screen and (max-width: 576px) {
 
-        #title-logo,
-        #instructions-link,
-        #about-link,
-        #copyright {
-            text-align: center;
-        }
-
-        #title-logo {
-            padding: 0;
-            font-size: 200%;
-        }
-
-        #instructions-link {
-            padding-right: 0;
-            padding-top: 0;
-            font-size: 100%;
-        }
-
-        #about-link,
-        #copyright {
-            font-size: 100%;
-        }
-
-        #header-container {
-            height: 10vh;
-        }
-
-        #anagram-container {
-            height: 6vh;
-            margin: 3vh 0 2vh 0;
-        }
-
-        #game-button-container {
-            height: 9vh;
-            margin-top: 1vh;
-        }
-
-        #gameplay-container {
-            height: 60vh;
-        }
-
-        #anagram {
-            font-size: 4vh;
-            letter-spacing: .4rem;
-            padding-left: .4rem;
-        }
-
-        #user-input-column {
-            height: 30vh;
-            font-size: 100%;
-            padding: 10px;
-        }
-
-        #feedback-column {
-            height: 25vh;
-            font-size: 100%;
-            padding: 10px;
-            margin-top: 2vh;
-        }
-
-        #spacer {
-            height: 10%;
-        }
-
+    #title-logo,
+    #instructions-link,
+    #about-link,
+    #copyright {
+        text-align: center;
     }
 
-    /* For mobile screens of 350px width and less */
-
-    @media screen and (max-width: 350px) {
-        #anagram {
-            font-size: 3vh;
-            letter-spacing: .3rem;
-            padding-left: .3rem;
-        }
-
-        #user-input-column,
-        #feedback-column {
-            padding: 10px;
-        }
-
-        #spacer {
-            height: 0;
-        }
+    #title-logo {
+        padding: 0;
+        font-size: 150%;
     }
+
+    #instructions-link {
+        padding-right: 0;
+        padding-top: 0;
+        font-size: 100%;
+    }
+
+    #about-link,
+    #copyright {
+        font-size: 100%;
+    }
+
+    #header-container {
+        height: 10vh;
+    }
+
+    #anagram-container {
+        height: 6vh;
+        margin: 3vh 0 2vh 0;
+    }
+
+    #game-button-container {
+        height: 15vh;
+        margin-top: 1vh;
+    }
+
+    #gameplay-container {
+        height: 55vh;
+    }
+
+    #anagram {
+        font-size: 4vh;
+        letter-spacing: .4rem;
+        padding-left: .4rem;
+    }
+
+    #user-input-column {
+        height: 25vh;
+        font-size: 100%;
+        padding: 10px;
+    }
+
+    #feedback-column {
+        height: 25vh;
+        font-size: 100%;
+        padding: 10px;
+        margin-top: 2vh;
+    }
+
+    #score {
+        padding-top: 10px;
+    }
+
+    #enter,
+    #shuffle,
+    #reveal {
+        font-size: 1rem;
+    }
+
+    #mainBtn {
+        font-size: 1.2rem;
+    }
+}
+
+/* For mobile screens of 350px width and less */
+
+@media screen and (max-width: 350px) {
+    #anagram {
+        font-size: 3vh;
+        letter-spacing: .3rem;
+        padding-left: .3rem;
+    }
+
+    #user-input-column,
+    #feedback-column {
+        padding: 10px;
+    }
+}
