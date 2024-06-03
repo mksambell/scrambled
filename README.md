@@ -110,9 +110,9 @@ Heart icons from [FontAwesome](https://fontawesome.com/) are used to show the nu
 
 **Colours**
 
-The colour scheme was chosen to give a high contrast and clean effect with splashes of colour for icons and links.
+The colour scheme was chosen to give a high contrast and clean effect with splashes of colour for icons and buttons.
 
-![Colour palette](/assets/readme-images/colour-palette.png)
+![Colour palette](/assets/readme-images/palette.png)
 
 **Styling**
 
@@ -124,7 +124,7 @@ The colour scheme was chosen to give a high contrast and clean effect with splas
 
 ## 2. Features
 
-The site is intended to be easy to navigate around and intuitive to use. Common pages, terminology and icons are used to help the user find their way around easily, and high contrast between font and background has been used to make the text immediately clear.
+The site is intended to be easy to navigate around and intuitive to use. Common layout, terminology and icons are used to help the user find their way around easily, and high contrast between font and background has been used to make the text immediately clear.
 
 ## Existing Features
 
@@ -152,6 +152,7 @@ The site is intended to be easy to navigate around and intuitive to use. Common 
 - User selects difficulty setting
 - Option for timed game
 - Limit the number of words
+- Resolve situation where anagrams have more than one solution
 
 [Back to contents](#contents)
 

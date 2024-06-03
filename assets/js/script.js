@@ -261,8 +261,10 @@ function nextWordHandler() {
 
 function enterHandler() {
     let g = guess.value.toLowerCase();
-    console.log(g);
     checkGuess(g);
+
+    // clears input field
+    guess.value = "";
 }
 
 function shuffleHandler() {
@@ -315,9 +317,6 @@ function checkGuess(g) {
 
     // if correct
     if (g === currentWord) {
-
-        // clears input field
-        guess.value = "";
 
         fdbk.innerHTML = `
             <p>${g.toUpperCase()} is correct!</p>`;
