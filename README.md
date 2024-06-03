@@ -43,7 +43,7 @@ Have a go! [**scrambled**]()
 
 The aim is to provide a fun game in the style of Countdown's Conundrum round, in which players are given 30-seconds to solve a 9-letter anagram. To make this game more open-ended, the timer element in the Countdown version has been replaced with a system of lives. Players could potentially play indefinitely, as long as they keep correctly guessing the anagrams. The limited number of lives keeps a degree of challenge - players must be careful with their guesses.
 
-In contrast to the Conundrum, the length of the anagrams in **scrambled** is randomly varied, from 5 to 9 letters in length. There is also the option to shuffle the order of the letters to provide a fresh perspective. The player can to do this as many times as they like.
+In contrast to the Conundrum, the length of the anagrams in **scrambled** is randomly varied, from 5 to 7 letters in length. There is also the option to shuffle the order of the letters to provide a fresh perspective. The player can to do this as many times as they like.
 
 Once a word is correctly guessed, or the player decides to reveal the word (forfeiting a life), a feedback box displays the word and some additional information, including a dictionary definition and example of usage. This is similar to the 'Dictionary Corner' feature of Countdown, and adds an educational aspect to the game.
 
@@ -70,14 +70,14 @@ As a player of the game, I want:
 
 ## Site Structure
 
-The site is structured with three pages:
+The site is structured in one page with three iterations:
 
 [*Home*](index.html)
 - The landing page contains the title, a brief description, links to instructions and information about the game, and a button to start a new game.
 
 [*Gameplay*](gameplay.html)
 - The main gameplay page
-- navigated to when users click on 'new game' button on home page
+- displays when users click on 'new game' button on home page
 - Displays the anagram
 - user interaction panel - guess input, buttons for shuffle, reveal/next word and end game
 - feedback panel - displays messages to user, including information about unscrambled words
@@ -114,20 +114,11 @@ The following wireframes were created in [Balsamiq](https://balsamiq.com/) and i
 
 **Typography**
 
-The fonts were selected from Google Fonts:
-
-- Gabarito
-	- Used for the title
-- Roboto
-	- Used for the display of the scrambled word and for button text
-- Source Sans
-	- Used for the main body of the text. Very easy to read.
-
-All fonts default to sans serif.
+Gabarito font, from Google Fonts, is used throughout. It's a fun, bold font which gives a lighthearted feel, and it also scales well to display the main anagram in capitals. The font defaults to sans serif.
 
 **Icons**
 
-Heart icons from [FontAwesome](https://fontawesome.com/) will be used to show the number of lives remaining.
+Heart icons from [FontAwesome](https://fontawesome.com/) are used to show the number of lives remaining (solid and outlines).
 
 [Back to contents](#contents)
 
@@ -174,6 +165,7 @@ The site is intended to be easy to navigate around and intuitive to use. Common 
 - Hint function
 - User selects difficulty setting
 - Option for timed game
+- Limit the number of words
 
 [Back to contents](#contents)
 
@@ -236,6 +228,7 @@ A copy of the GitHub Repository can be made by forking the GitHub account. This 
 ### Code
 
 - Code for random sort function from James Bubb on [Dev Community](https://dev.to/codebubb/how-to-shuffle-an-array-in-javascript-2ikj)
+- Code for modals developed from [Bootstrap] documentation
 
 ### Content
 

@@ -36,6 +36,9 @@ function newGame() {
     lives = 3;
     score = 0;
 
+    // displays SCRAMBLED in anagram display
+    anagram.innerHTML = 'scrambled';
+
     // checks what word length user has selected
     if (document.getElementById('btn5').checked) {
         worLen = 5;
@@ -140,7 +143,7 @@ async function newWord() {
     shufBtn.addEventListener('click', shuffleHandler);
     revBtn.addEventListener('click', revealHandler);
     entBtn.addEventListener('click', enterHandler);
-    guess.addEventListener('keypress', function(event) {
+    guess.addEventListener('keypress', function (event) {
         if (event.key === "Enter") {
             event.preventDefault();
             enterHandler();
@@ -191,9 +194,6 @@ function revealHandler() {
         // clears input field
         guess.value = "";
 
-        // adds word to list of unsolved words
-        unsolvedList.push(currentWord);
-
         if (lives >= 1) {
             //displays answer
             displayWord(currentWord);
@@ -201,6 +201,9 @@ function revealHandler() {
             // displays answer in feedback section
             fdbk.innerHTML = `
             <p>The word was ${currentWord.toUpperCase()}.</p>`;
+
+            // adds word to list of unsolved words
+            unsolvedList.push(currentWord);
 
             //changes reveal button and event listeners
             revBtn.innerHTML = `next word`;
@@ -302,7 +305,7 @@ function shuffle(word) {
     }
 
     return anag;
-    
+
 }
 
 function checkGuess(g) {
@@ -345,7 +348,7 @@ function checkGuess(g) {
     } else if (guessList.includes(g)) {
         fdbk.innerHTML = `
             <p>You've already guessed this. Try again!</p>`;
-            console.log(guessList);
+        console.log(guessList);
     } else {
         if (lives > 1) {
             fdbk.innerHTML = `
@@ -368,7 +371,6 @@ function incrementScore() {
 
 function endGameHandler() {
     if (confirm('This will end the current game. \nAre you sure?')) {
-        unsolvedList.push(currentWord);
         gameOver();
     } else {
         return;
@@ -389,6 +391,9 @@ function gameOver() {
 
     // displays GAME OVER in anagram display
     anagram.innerHTML = 'game over';
+
+    // adds word to unsolved list
+    unsolvedList.push(currentWord);
 
     // disables input section, shuffle and reveal buttons
     guess.setAttribute('disabled', "");
@@ -433,6 +438,9 @@ function gameSum() {
     if (unsolvedList.length === 0) {
         fdbk.innerHTML = `
             <p>There were no unsolved words!</p>`;
+    } else if (unsolvedList.length === 1) {
+        fdbk.innerHTML = `
+        <p>There was 1 unsolved word.</p>`;
     } else {
         fdbk.innerHTML = `
             <p>There were ${unsolvedList.length} unsolved words.</p>
