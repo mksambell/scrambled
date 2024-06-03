@@ -35,6 +35,8 @@ function newGame() {
     unscrambledList = [];
     lives = 3;
     score = 0;
+    guessList = [];
+
 
     // displays SCRAMBLED in anagram display
     anagram.innerHTML = 'scrambled';
@@ -330,8 +332,9 @@ function checkGuess(g) {
         revBtn.removeEventListener('click', revealHandler);
         revBtn.addEventListener('click', nextWordHandler);
 
-        // deactivates shuffle button
+        // deactivates shuffle and enter button
         shufBtn.removeEventListener('click', shuffleHandler);
+        entBtn.removeEventListener('click', enterHandler);
 
     } else if (g === "") {
         fdbk.innerHTML = `
@@ -349,6 +352,7 @@ function checkGuess(g) {
         fdbk.innerHTML = `
             <p>You've already guessed this. Try again!</p>`;
         console.log(guessList);
+        return;
     } else {
         if (lives > 1) {
             fdbk.innerHTML = `
@@ -361,7 +365,7 @@ function checkGuess(g) {
 
             gameOver();
         }
-    }
+    };
 }
 
 function incrementScore() {
@@ -378,8 +382,14 @@ function endGameHandler() {
 }
 
 function gameOver() {
+    // shows no lives even if user ended game with lives remaining
     lives = 0;
     showLives();
+
+    // checks if user has already revealed word
+    if (!unsolvedList.includes(currentWord)) {
+        unsolvedList.push(currentWord);
+    };
 
     // displays answer in feedback section and message about no lives
     fdbk.innerHTML = `
@@ -391,9 +401,6 @@ function gameOver() {
 
     // displays GAME OVER in anagram display
     anagram.innerHTML = 'game over';
-
-    // adds word to unsolved list
-    unsolvedList.push(currentWord);
 
     // disables input section, shuffle and reveal buttons
     guess.setAttribute('disabled', "");
@@ -440,13 +447,15 @@ function gameSum() {
             <p>There were no unsolved words!</p>`;
     } else if (unsolvedList.length === 1) {
         fdbk.innerHTML = `
-        <p>There was 1 unsolved word.</p>`;
-    } else {
-        fdbk.innerHTML = `
-            <p>There were ${unsolvedList.length} unsolved words.</p>
+            <p>There was 1 unsolved word.</p>
             <br>
             <p>UNSOLVED: ${unsolvedList.toString()}</p>`;
-    }
+    } else {
+        fdbk.innerHTML = `
+            <p>There were ${unsolvedList.length} unsolved words.</p >
+            <br>
+            <p>UNSOLVED: ${unsolvedList.toString()}</p>`;
+    };
 }
 
 function checkLeave(event) {
