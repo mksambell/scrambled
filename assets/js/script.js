@@ -210,7 +210,7 @@ function revealHandler() {
             unsolvedList.push(currentWord);
 
             //changes reveal button and event listeners
-            revBtn.innerHTML = `next word`;
+            revBtn.innerHTML = `next`;
             revBtn.removeEventListener('click', revealHandler);
             revBtn.addEventListener('click', nextWordHandler);
 
@@ -349,7 +349,7 @@ function checkGuess(g) {
         guess.removeEventListener('keypress', entBtnHandler);
 
         //changes reveal button and event listeners
-        revBtn.innerHTML = `next word`;
+        revBtn.innerHTML = `next`;
         revBtn.removeEventListener('click', revealHandler);
         revBtn.addEventListener('click', nextWordHandler);
         guess.addEventListener('keypress', nexBtnHandler);
