@@ -144,7 +144,8 @@ function startGame() {
  */
 async function newWord() {
 
-    fdbk.innerHTML = `<p>Generating anagram...</p>`;
+    fdbk.innerHTML = `<p>Generating anagram...</p>
+                        <img id="loading-gif" class="img-fluid" src="assets/images/loading-loader.gif">`;
 
     // shifts focus to input box
     guess.focus();
@@ -199,7 +200,7 @@ async function getWordInfo() {
             console.log(response.status);
             return;
         };
-
+        console.log(data)
         return data[0].shortdef;
 
     } catch (error) {

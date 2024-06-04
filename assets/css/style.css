@@ -151,6 +151,10 @@ h4 {
     font-size: 150%;
 }
 
+#loading-gif {
+    max-height: 20vh;
+}
+
 #guess-box {
     padding-bottom: 10px;
 }
@@ -266,7 +270,7 @@ i {
 
     #user-input-column {
         padding: 2px;
-        font-size: 80%;
+        font-size: 70%;
     }
 
     #feedback-column {
@@ -291,6 +295,14 @@ i {
 
     #score {
         margin-top: 10px;
+    }
+
+    #btn-group {
+        width: 200px;
+    }
+
+    #btn-group label {
+        font-size: .7rem;
     }
 
 }
