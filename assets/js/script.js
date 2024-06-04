@@ -153,6 +153,10 @@ async function newWord() {
     guessList = [];
 
     currentWord = await getWord();
+
+    // call getWordInfo function and store in variable
+    crtWordInfo = await getWordInfo();
+
     displayWord(shuffle(currentWord));
 
     fdbk.innerHTML = `<p>Guess away!</p>`;
@@ -164,8 +168,6 @@ async function newWord() {
     guess.addEventListener('keypress', entBtnHandler);
     mainBtn.addEventListener('click', endGameHandler);
 
-    // call getWordInfo function and store in variable
-    crtWordInfo = await getWordInfo();
     console.log(crtWordInfo);
 }
 
@@ -186,23 +188,23 @@ function entBtnHandler(event) {
  */
 async function getWordInfo() {
 
-    let URL = `https://api.dictionaryapi.dev/api/v2/entries/en/${currentWord}`;
+    const apiKey = 'b2c8534a-1102-45e8-959f-edb134380e59';
+    let URL = `https://www.dictionaryapi.com/api/v3/references/collegiate/json/${currentWord}?key=${apiKey}`;
 
     try {
         const response = await fetch(URL);
         let data = await response.json();
 
         if (!response.ok) {
-            console.log(response.description);
+            console.log(response.status);
             return;
         };
 
-        return data;
+        return data[0].shortdef;
 
     } catch (error) {
-        fdbk.innerHTML = `
-            <p>Sorry, the dictionary is not working at the moment.</p>`;
-    }
+        return 'Sorry, the dictionary is not working at the moment.';
+    };
 
 }
 
@@ -236,7 +238,8 @@ function revealHandler() {
 
             // displays answer in feedback section
             fdbk.innerHTML = `
-            <p>The word was ${currentWord.toUpperCase()}.</p>`;
+            <p>The word was ${currentWord.toUpperCase()}.</p>
+            <p>Definition: ${crtWordInfo}</p>`;
 
             // adds word to list of unsolved words
             unsolvedList.push(currentWord);
@@ -414,7 +417,8 @@ function checkGuess(g) {
     if (g === currentWord) {
 
         fdbk.innerHTML = `
-            <p>${g.toUpperCase()} is correct!</p>`;
+            <p>${g.toUpperCase()} is correct!</p>
+            <p>Definition: ${crtWordInfo}</p>`;
 
         unscrambledList.push(currentWord);
 
@@ -504,10 +508,7 @@ function gameOver() {
     // displays answer in feedback section and message about no lives
     fdbk.innerHTML = `
         <p>The word was ${currentWord.toUpperCase()}.</p>
-        <br>
-        <p>You're out of lives!</p>
-        <br>
-        <p>Click below for a game summary</p>`;
+        <p>Definition: ${crtWordInfo}</p>`;
 
     // displays GAME OVER in anagram display
     anagram.innerHTML = 'game over';
