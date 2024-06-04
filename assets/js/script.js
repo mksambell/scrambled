@@ -145,17 +145,19 @@ async function newWord() {
     shufBtn.addEventListener('click', shuffleHandler);
     revBtn.addEventListener('click', revealHandler);
     entBtn.addEventListener('click', enterHandler);
-    guess.addEventListener('keypress', function (event) {
-        if (event.key === "Enter") {
-            event.preventDefault();
-            enterHandler();
-        };
-    });
+    guess.addEventListener('keypress', entBtnHandler);
     mainBtn.addEventListener('click', endGameHandler);
 
     // call getWordInfo function and store in variable
     crtWordInfo = await getWordInfo();
     console.log(crtWordInfo);
+}
+
+function entBtnHandler(event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        enterHandler();
+    };
 }
 
 async function getWordInfo() {
@@ -217,6 +219,10 @@ function revealHandler() {
 
             // prevents user entering word once revealed
             entBtn.removeEventListener('click', enterHandler);
+            guess.removeEventListener('keypress', entBtnHandler);
+
+            // allows user to proceed to next word with enter button
+            guess.addEventListener('keypress', nexBtnHandler);
 
         } else {
             gameOver();
@@ -224,6 +230,13 @@ function revealHandler() {
     } else {
         return;
     }
+}
+
+function nexBtnHandler(event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        nextWordHandler();
+    };
 }
 
 function dockLife() {
@@ -257,6 +270,10 @@ function nextWordHandler() {
     //changes reveal button name and event listeners
     revBtn.innerHTML = `reveal`;
     revBtn.removeEventListener('click', nextWordHandler);
+
+    // changes nextWord listener on enter button to enter listener
+    guess.removeEventListener('keypress', nexBtnHandler);
+    guess.addEventListener('keypress', entBtnHandler);
 }
 
 function enterHandler() {
@@ -326,14 +343,18 @@ function checkGuess(g) {
         //increment score and display score
         incrementScore();
 
+        // deactivates shuffle and enter button
+        shufBtn.removeEventListener('click', shuffleHandler);
+        entBtn.removeEventListener('click', enterHandler);
+        guess.removeEventListener('keypress', entBtnHandler);
+
         //changes reveal button and event listeners
         revBtn.innerHTML = `next word`;
         revBtn.removeEventListener('click', revealHandler);
         revBtn.addEventListener('click', nextWordHandler);
+        guess.addEventListener('keypress', nexBtnHandler);
 
-        // deactivates shuffle and enter button
-        shufBtn.removeEventListener('click', shuffleHandler);
-        entBtn.removeEventListener('click', enterHandler);
+        
 
     } else if (g === "") {
         fdbk.innerHTML = `
