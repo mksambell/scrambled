@@ -199,6 +199,15 @@ i {
 
 /* ------------------------------------   Media queries */
 
+/* For screens of 992px width and less */
+
+@media screen and (max-width: 992px) {
+
+    #anagram {
+        font-size: 6vh;
+    }
+}
+
 /* For mobile screens of 768px width and less */
 
 @media screen and (max-width: 768px) {
@@ -208,7 +217,7 @@ i {
     }
 
     #anagram {
-        font-size: 6vh;
+        /* font-size: 6vh; */
         letter-spacing: .6rem;
         padding-left: .6rem;
     }
@@ -226,6 +235,64 @@ i {
     i {
         font-size: 1.6rem;
     }
+}
+
+/* For mobile devices of 768px width and less in landscape orientation */
+@media only screen and (max-device-width: 768px) and (orientation: landscape) {
+
+    #title-logo,
+    #instructions-link,
+    #about-link {
+        font-size: 100%;
+    }
+
+    #instructions-link {
+        padding-top: 0;
+        padding-right: .5rem;
+    }
+
+    #header-container {
+        padding: .5rem;
+        height: 6vh;
+    }
+
+    #description {
+        font-size: 100%;
+    }
+
+    #mainBtn {
+        font-size: 1rem;
+    }
+
+    #user-input-column {
+        padding: 2px;
+        font-size: 80%;
+    }
+
+    #feedback-column {
+        padding: 5px;
+        font-size: 70%;
+    }
+
+    #enter,
+    #shuffle,
+    #reveal {
+        font-size: .9rem;
+        margin-bottom: 1vh;
+    }
+
+    #copyright {
+        font-size: 80%;
+    }
+
+    #lives i {
+        font-size: 1rem;
+    }
+
+    #score {
+        margin-top: 10px;
+    }
+
 }
 
 /* For mobile screens of 576px width and less */
@@ -305,6 +372,11 @@ i {
     #mainBtn {
         font-size: 1.2rem;
     }
+
+    #btn-group .btn-check {
+        font-size: 1rem;
+    }
+
 }
 
 /* For mobile screens of 350px width and less */
