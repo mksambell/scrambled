@@ -27,6 +27,13 @@ mainBtn.focus();
 // adds listener to title-logo anchor
 document.getElementById('title-link').addEventListener('click', checkLeave);
 
+/**
+ * called when user clicks 'new game' button
+ * changes html to display gameplay screen
+ * initialises/clears main game variables
+ * prepares event listeners
+ * stores DOM elements in variables for later use
+ */
 function newGame() {
 
     //resets gameplay variables
@@ -116,6 +123,11 @@ function newGame() {
     // anagram.innerHTML = 'good luck';
 }
 
+/**
+ * called when user clicks 'start game' button
+ * calls newWord function
+ * prepares listener for 'end game' button
+ */
 function startGame() {
 
     newWord();
@@ -123,12 +135,16 @@ function startGame() {
     //changes main button name and changes event listener
     mainBtn.innerHTML = `end game`;
     mainBtn.removeEventListener('click', startGame);
-
-    fdbk.innerHTML = `
-        <p>Generating anagram...</p>`
 }
 
+/**
+ * calls getWord function and stores result in currentWord var
+ * prepares listeners for gameplay buttons and input box
+ * async function awaits result of getWord API call
+ */
 async function newWord() {
+
+    fdbk.innerHTML = `<p>Generating anagram...</p>`;
 
     // shifts focus to input box
     guess.focus();
@@ -153,6 +169,10 @@ async function newWord() {
     console.log(crtWordInfo);
 }
 
+/**
+ * listens for Enter keypress and calls enterHandler
+ * @param {*} event - keypress 
+ */
 function entBtnHandler(event) {
     if (event.key === "Enter") {
         event.preventDefault();
@@ -160,6 +180,10 @@ function entBtnHandler(event) {
     };
 }
 
+/**
+ * calls Dictionary API for info on currentWord 
+ * @returns {object} data on currentWord
+ */
 async function getWordInfo() {
 
     let URL = `https://api.dictionaryapi.dev/api/v2/entries/en/${currentWord}`;
@@ -182,6 +206,14 @@ async function getWordInfo() {
 
 }
 
+/**
+ * called when user clicks 'reveal' button
+ * checks if user wants to proceed
+ * if true, docks a life
+ * and prepares for next word to be clicked
+ * if lives = 0, then calls gameOver function
+ * @returns void if confirm message is false
+ */
 function revealHandler() {
 
     let message;
@@ -232,6 +264,10 @@ function revealHandler() {
     }
 }
 
+/**
+ * called if user hits enter key to trigger next word
+ * @param {*} event - keypress
+ */
 function nexBtnHandler(event) {
     if (event.key === "Enter") {
         event.preventDefault();
@@ -239,11 +275,18 @@ function nexBtnHandler(event) {
     };
 }
 
+/**
+ * decreases lives variable by one
+ * calls showLives function to display remaining lives
+ */
 function dockLife() {
     lives -= 1;
     showLives();
 }
 
+/**
+ * displays remaining lives in user-input-column
+ */
 function showLives() {
     if (lives < 3) {
         document.getElementById('life3').classList.remove('fa-solid');
@@ -259,13 +302,16 @@ function showLives() {
     };
 }
 
+/**
+ * called when user clicks next word or hits enter to trigger next word
+ * calls newWord function
+ * prepares listeners for gameplay buttons
+ */
 function nextWordHandler() {
     newWord();
 
     // clears input field
     guess.value = "";
-
-    fdbk.innerHTML = `<p>Generating anagram...</p>`;
 
     //changes reveal button name and event listeners
     revBtn.innerHTML = `reveal`;
@@ -276,6 +322,11 @@ function nextWordHandler() {
     guess.addEventListener('keypress', entBtnHandler);
 }
 
+/**
+ * called when user hits or clicks enter
+ * assigns user input to local var
+ * calls checkGuess with guess as parameter
+ */
 function enterHandler() {
     let g = guess.value.toLowerCase();
     checkGuess(g);
@@ -284,17 +335,30 @@ function enterHandler() {
     guess.value = "";
 }
 
+/**
+ * called when user clicks shuffle button
+ * calls shuffle function and passes result to displayWord function
+ */
 function shuffleHandler() {
     //handles shuffle button click
     let a = shuffle(currentWord);
     displayWord(a);
 }
 
+/**
+ * displays anagram on screen
+ * @param {string} anag - anagram to be displayed
+ */
 function displayWord(anag) {
     // displays the anagram in the anagram display
     anagram.innerHTML = anag;
 }
 
+/**
+ * called when user clicks start game or next
+ * calls Random Word API to request single random word of between 5-7 letters long
+ * @returns {string} word to be used for anagram
+ */
 // syntax for API developed from code by youtuber ByteGrad
 async function getWord() {
 
@@ -315,8 +379,13 @@ async function getWord() {
     }
 }
 
+/**
+ * called when start game, next or shuffle is clicked
+ * 
+ * @param {string} word - currentWord
+ * @returns {string} anagram
+ */
 function shuffle(word) {
-    // shuffles word received from API
     // code for random sort algorithm from https://dev.to/codebubb/how-to-shuffle-an-array-in-javascript-2ikj
     let anag = word.split("").sort((a, b) => 0.5 - Math.random()).join("");
 
@@ -326,9 +395,18 @@ function shuffle(word) {
     }
 
     return anag;
-
 }
 
+/**
+ * checks if user guess is correct
+ * if true, calls increment score
+ * and prepares listeners
+ * if not correct, checks if length and letter content is correct
+ * and if user has already guessed this word
+ * displays feedback to user
+ * @param {string} g - user guess
+ * @returns void if guess is incorrect
+ */
 function checkGuess(g) {
     // checks guess against currentWord
 
@@ -353,8 +431,6 @@ function checkGuess(g) {
         revBtn.removeEventListener('click', revealHandler);
         revBtn.addEventListener('click', nextWordHandler);
         guess.addEventListener('keypress', nexBtnHandler);
-
-        
 
     } else if (g === "") {
         fdbk.innerHTML = `
@@ -388,11 +464,19 @@ function checkGuess(g) {
     };
 }
 
+/**
+ * increases score by 1
+ * displays score in user-input-column
+ */
 function incrementScore() {
     score += 1;
     scr.innerHTML = `Score: ${score}`;
 }
 
+/**
+ * called if user clicks end game button
+ * calls gameOver function if user confirms
+ */
 function endGameHandler() {
     if (confirm('This will end the current game. \nAre you sure?')) {
         gameOver();
@@ -401,6 +485,12 @@ function endGameHandler() {
     }
 }
 
+/**
+ * called if user ends game or if lives run out on guesses or reveal
+ * displays 0 lives
+ * displays feedback to user
+ * prepares listeners for game summary
+ */
 function gameOver() {
     // shows no lives even if user ended game with lives remaining
     lives = 0;
@@ -435,6 +525,11 @@ function gameOver() {
 
 }
 
+/**
+ * called when user clicks on game summary
+ * displays feedback on number of words solved and unsolved
+ * displays list of solved and unsolved words
+ */
 function gameSum() {
 
     // changes main button and event listeners
@@ -478,6 +573,12 @@ function gameSum() {
     };
 }
 
+/**
+ * called if user clicks on title-logo anchor link
+ * returns to landing page if user confirms
+ * @param {*} event 
+ * @returns 
+ */
 function checkLeave(event) {
     if (confirm('This will take you back to the home page.\n\nIt will end the current game and lose game data.\n\nAre you sure you want to proceed?')) {
         return;
