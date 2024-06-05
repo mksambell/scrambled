@@ -156,9 +156,6 @@ async function newWord() {
 
     currentWord = await getWord();
 
-    // FOR TESTING
-    currentWord = 'radar';
-
     // call getWordInfo function and store in variable
     wordInfo = await getWordInfo();
 
