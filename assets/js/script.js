@@ -384,8 +384,13 @@ function displayWord(anag) {
 async function getWord() {
 
     try {
-        const response = await fetch(`https://random-word-api.herokuapp.com/word?lang=en&length=${worLen}`);
+        // aborts API call after 8 seconds
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 8000);
+        
+        const response = await fetch(`https://random-word-api.herokuapp.com/word?lang=en&length=${worLen}`, { signal: controller.signal });
         let word = await response.json();
+        clearTimeout(timeoutId);
 
         if (!response.ok) {
             console.log(response.description);
@@ -395,6 +400,7 @@ async function getWord() {
         return word[0];
 
     } catch (error) {
+        console.log(error);
         fdbk.innerHTML = `
             <p>Sorry, the random word generator is not working at the moment. Please try again later</p>`;
     }
