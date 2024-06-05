@@ -5,9 +5,10 @@ let unsolvedList = [];
 let unscrambledList = [];
 let lives = 3;
 let score = 0;
-let crtWordInfo;
+let wordInfo;
 let worLen;
 let guessList = [];
+let defMsg;
 
 //DOM elements stored in variables for later use (most assigned in newGame())
 
@@ -155,8 +156,15 @@ async function newWord() {
 
     currentWord = await getWord();
 
+    // FOR TESTING
+    currentWord = 'radar';
+
     // call getWordInfo function and store in variable
-    crtWordInfo = await getWordInfo();
+    wordInfo = await getWordInfo();
+
+    console.log(wordInfo);
+
+    defMsg = getDef(wordInfo);
 
     displayWord(shuffle(currentWord));
 
@@ -169,7 +177,7 @@ async function newWord() {
     guess.addEventListener('keypress', entBtnHandler);
     mainBtn.addEventListener('click', endGameHandler);
 
-    console.log(crtWordInfo);
+    currentWord = 'radar';
 }
 
 /**
@@ -200,13 +208,29 @@ async function getWordInfo() {
             console.log(response.status);
             return;
         };
-        console.log(data)
-        return data[0].shortdef;
+        return data;
 
     } catch (error) {
         return 'Sorry, the dictionary is not working at the moment.';
     };
 
+}
+
+function getDef(info) {
+    //first checks if getWord has returned error message, and returns that
+    if (typeof info === 'string') {
+        return info;
+    } else if (!info[0].shortdef) {
+        if (info[1].shortdef) {
+            return info[1].shortdef;
+        } else {
+            return `The dictionary does not have a short definition for this word. 
+                Try looking it up in the <a id="dict-link" href="https://www.merriam-webster.com/" target="_blank">
+                Merriam-Webster</a> dictionary.`;
+        };
+    } else {
+        return info[0].shortdef;
+    }
 }
 
 /**
@@ -239,8 +263,8 @@ function revealHandler() {
 
             // displays answer in feedback section
             fdbk.innerHTML = `
-            <p>The word was ${currentWord.toUpperCase()}.</p>
-            <p>Definition: ${crtWordInfo}</p>`;
+            <p class="def">The word is ${currentWord.toUpperCase()}.
+            <br>Definition: ${defMsg}</p>`;
 
             // adds word to list of unsolved words
             unsolvedList.push(currentWord);
@@ -417,9 +441,12 @@ function checkGuess(g) {
     // if correct
     if (g === currentWord) {
 
+        //displays answer
+        displayWord(currentWord);
+
         fdbk.innerHTML = `
-            <p>${g.toUpperCase()} is correct!</p>
-            <p>Definition: ${crtWordInfo}</p>`;
+            <p class="def">${g.toUpperCase()} is correct!<br>
+            Definition: ${defMsg}</p>`;
 
         unscrambledList.push(currentWord);
 
@@ -508,8 +535,8 @@ function gameOver() {
 
     // displays answer in feedback section and message about no lives
     fdbk.innerHTML = `
-        <p>The word was ${currentWord.toUpperCase()}.</p>
-        <p>Definition: ${crtWordInfo}</p>`;
+        <p class="def">The word was ${currentWord.toUpperCase()}.<br>
+        Definition: ${defMsg}</p>`;
 
     // displays GAME OVER in anagram display
     anagram.innerHTML = 'game over';

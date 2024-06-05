@@ -226,7 +226,7 @@ A copy of the GitHub Repository can be made by forking the GitHub account. This 
 
 ### Media
 
-
+- Loading gif from [Tenor](https://tenor.com/view/loading-loader-animation-transparent-gif-22551485)
 
 [Back to contents](#contents)
 
