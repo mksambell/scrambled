@@ -194,8 +194,13 @@ async function getWordInfo() {
     let URL = `https://www.dictionaryapi.com/api/v3/references/collegiate/json/${currentWord}?key=${apiKey}`;
 
     try {
-        const response = await fetch(URL);
+        // aborts API call after 8 seconds
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 8000);
+
+        const response = await fetch(URL, { signal: controller.signal });
         let data = await response.json();
+        clearTimeout(timeoutId);
 
         if (!response.ok) {
             console.log(response.status);
@@ -387,7 +392,7 @@ async function getWord() {
         // aborts API call after 8 seconds
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), 8000);
-        
+
         const response = await fetch(`https://random-word-api.herokuapp.com/word?lang=en&length=${worLen}`, { signal: controller.signal });
         let word = await response.json();
         clearTimeout(timeoutId);
