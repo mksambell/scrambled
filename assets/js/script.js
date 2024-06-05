@@ -159,8 +159,6 @@ async function newWord() {
     // call getWordInfo function and store in variable
     wordInfo = await getWordInfo();
 
-    console.log(wordInfo);
-
     defMsg = getDef(wordInfo);
 
     displayWord(shuffle(currentWord));
@@ -173,8 +171,6 @@ async function newWord() {
     entBtn.addEventListener('click', enterHandler);
     guess.addEventListener('keypress', entBtnHandler);
     mainBtn.addEventListener('click', endGameHandler);
-
-    currentWord = 'radar';
 }
 
 /**
