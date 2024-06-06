@@ -46,7 +46,7 @@ As a player of the game, I want:
 4. To clearly see how many lives I have remaining
 5. To be able to shuffle the letters of the anagram
 6. To be able to end the game at any stage
-7. To have helpful feedback on my guesses
+7. To have helpful feedback if I make an input error
 8. To be protected from accidentally ending the game by clicking on links or the end game button
 9. To receive a summary of each game
 10. To have a running total of the words I have solved
@@ -58,22 +58,23 @@ As a player of the game, I want:
 
 ## Site Structure
 
-The site is structured in one page with three iterations:
+The site is structured on one page which changes according to user interactions:
 
-[*Home*](index.html)
-- The landing page contains the title, a brief description, links to instructions and information about the game, and a button to start a new game.
+[*Landing page*](index.html)
+- The landing page contains the title, a brief description, links to instructions and information about the game, and buttons to select the word lengths and to start a new game.
 
-[*Gameplay*](gameplay.html)
+*During gameplay*
 - The main gameplay page
-- displays when users click on 'new game' button on home page
 - Displays the anagram
-- user interaction panel - guess input, buttons for shuffle, reveal/next word and end game
-- feedback panel - displays messages to user, including information about unscrambled words
+- Contains user interaction panel - guess input, buttons for shuffle, reveal/next word, enter and end game
+- Feedback panel - displays messages to user, including information about unscrambled words and error messages
+- Contains end game button for users to stop game at any time
 
-[*Game over*](game-over.html)
-- Displays a summary of the game just played
-- navigated to once user confirms end game, or the last life is lost
-- contains the new game button which navigates back to the gameplay page
+*Game over*
+- Displays a summary of the current game
+- User panel displays list of unscrambled words
+- Feedback panel displays list of unsolved words
+- Contains buttons to select word length and start another new game
 
 
 [Back to contents](#contents)
