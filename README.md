@@ -1,10 +1,10 @@
-# **scrambled - anagram word game**
+# **scrambled**
 
-**scrambled** is an anagram word game in which the player attempts to solve as many anagrams as they can. The player has three lives; they lose a life if they make an incorrect guess. A correct guess allows them to proceed to the next word. The game ends when the three lives are up or when the player decides. The player is then given a summary of the game - how many words they unscrambled - and an invitation to start a new game.
+**scrambled** is an anagram word game in which the player attempts to solve as many anagrams as they can. The player can choose a 5-, 6-, or 7-letter word game. The player has three lives; they lose a life if they make an incorrect guess or opt to reveal the word. A correct guess allows them to proceed to the next word. The game ends when the three lives are up or when the player decides. The player is then given a summary of the game and an invitation to start a new game.
 
-Have a go! [**scrambled**]()
+Have a go! [**scrambled**](https://mksambell.github.io/scrambled/)
 
-![Responsive Screenshot](./assets/readme-images/responsive-screenshot.jpg)
+![Responsive Screenshot](/assets/readme-images/resp-screenshots.png)
 
 ## Contents
 1. [**User Experience UX**](#1-user-experience-ux)
@@ -27,11 +27,13 @@ Have a go! [**scrambled**]()
 
 ## Strategy
 
-The aim is to provide a fun game in the style of Countdown's Conundrum round, in which players are given 30-seconds to solve a 9-letter anagram. To make this game more open-ended, the timer element in the Countdown version has been replaced with a system of lives. Players could potentially play indefinitely, as long as they keep correctly guessing the anagrams. The limited number of lives keeps a degree of challenge - players must be careful with their guesses.
+The aim is to provide a fun game in the style of Countdown's Conundrum round, in which players attempt to solve an anagram. The game is intended to be light-hearted and user-friendly, but also be informative and present a degree of challenge. Players will be able to play a casual game, and dedicated wordgame enthusiasts will be able to play multiple times to hone their anagram-solving skills. 
 
-In contrast to the Conundrum, the length of the anagrams in **scrambled** is randomly varied, from 5 to 7 letters in length. There is also the option to shuffle the order of the letters to provide a fresh perspective. The player can to do this as many times as they like.
+In the conundrum round, players are given 30-seconds to solve a 9-letter anagram; the aim is for the player to guess the anagram before their opponent. In **scrambled** the aim is for the user to solve as many anagrams as they can, so the timer element is replaced with a system of lives. This allows the user more thinking time and makes the game more open-ended: players could potentially play indefinitely, as long as they keep correctly guessing the anagrams. The limited number of lives keeps a degree of challenge - players must be careful with their guesses.
 
-Once a word is correctly guessed, or the player decides to reveal the word (forfeiting a life), a feedback box displays the word and some additional information, including a dictionary definition and example of usage. This is similar to the 'Dictionary Corner' feature of Countdown, and adds an educational aspect to the game.
+The conundrum round exclusively features 9-letter anagrams. To make **scrambled** accessible to a wide range of users, the user will be able to select the length of anagram they want to solve, either 5-, 6-, or 7-letter words. There will also be the option to shuffle the order of the letters to provide a fresh perspective on the anagram. The player can to do this as many times as they like.
+
+In Countdown, the 'Dictionary Corner' feature gives information about discovered words. **scrambled** will also feature a short definition of words, once they have been unscrambled or revealed. This adds an informative/educational aspect to the game; users can develop their vocabulary while playing the game.
 
 [Back to contents](#contents)
 
@@ -166,6 +168,7 @@ The site is intended to be easy to navigate around and intuitive to use. Common 
 - [Github](https://github.com/) was used for version control and for hosting
 - [Google Chrome Developer Tools](https://developer.chrome.com/docs/devtools) were used throughout development and for testing
 - Logo was edited using [Adobe Express](https://www.adobe.com/express/feature/image/remove-background)
+- Responsive screenshots created with [Am I Responsive](https://ui.dev/amiresponsive)
 
 [Back to contents](#contents)
 
