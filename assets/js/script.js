@@ -45,7 +45,6 @@ function newGame() {
     score = 0;
     guessList = [];
 
-
     // displays SCRAMBLED in anagram display
     anagram.innerHTML = 'scrambled';
 
@@ -239,7 +238,6 @@ async function getWordInfo() {
     } catch (error) {
         return 'Sorry, the dictionary is not working at the moment. Try looking up the word in the <a id="dict-link" href="https://www.merriam-webster.com/" target="_blank">Merriam-Webster</a> dictionary.';
     };
-
 }
 
 function getDef(info) {
@@ -562,7 +560,6 @@ function gameOver() {
     mainBtn.innerHTML = `game summary`;
     mainBtn.removeEventListener('click', endGameHandler);
     mainBtn.addEventListener('click', gameSum);
-
 }
 
 /**

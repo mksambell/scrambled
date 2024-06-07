@@ -152,10 +152,10 @@ The site is intended to be easy to navigate around and intuitive to use. Common 
 ## Future features
 
 - Hint function
-- User selects difficulty setting
 - Option for timed game
-- Limit the number of words
-- Resolve situation where anagrams have more than one solution
+- Option for a limited number of words
+
+(bug)- Resolve situation where anagrams have more than one solution
 
 [Back to contents](#contents)
 
@@ -222,22 +222,22 @@ A copy of the GitHub Repository can be made by forking the GitHub account. This 
 - Code for modals developed from [Bootstrap] documentation
 - Code for inserting Abort Controllers to API from ianstormtaylor on [Github](https://github.com/whatwg/fetch/issues/951)
 
-### Content
+### Content and media
 
 - Fonts from [Google Fonts](https://fonts.google.com/)
 - Icons from [FontAwesome](https://fontawesome.com/)
 - Colour palette created with [Coolors](https://coolors.co/)
-- Logo image created by <a href="https://www.vecteezy.com/free-vector/tangle">Tangle Vectors by Vecteezy</a> Svitlana Panteley
-
-### Media
-
+- Logo image created by Svitlana Panteley, downloaded from Tangle Vectors by [Vecteezy](https://www.vecteezy.com/free-vector/tangle)
+- 5-letter backup word list from charlesreid1 on [Github](https://github.com/charlesreid1/five-letter-words/blob/master/sgb-words.txt)
+- 6-letter backup word list from getify on [Github](https://github.com/getify/dwordly-game/blob/main/six-letter-words.json)
+- 7-letter backup word list from powerlanguage on [Github](https://github.com/powerlanguage/word-lists/blob/master/common-7-letter-words.txt)
 - Loading gif from [Tenor](https://tenor.com/view/loading-loader-animation-transparent-gif-22551485)
 
 [Back to contents](#contents)
 
 ## 7. Acknowledgements
 
-This game was developed as my second Milestone Project for the Full Stack Software Developer Diploma at Code Institute. I would like to thank my mentor, [Precious Ijege](https://www.linkedin.com/in/precious-ijege-908a00168/), and all at Code Institute for their help and support.
+This game was developed as my second Milestone Project for the Full Stack Software Developer Diploma at Code Institute. I would like to thank my mentor, [Precious Ijege](https://www.linkedin.com/in/precious-ijege-908a00168/), and all at Code Institute for their help and support. I would also like to thank my family for road testing the game and UX.
 
 Mark Sambell 2024
 
