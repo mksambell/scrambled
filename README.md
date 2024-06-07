@@ -133,19 +133,112 @@ The site is intended to be easy to navigate around and intuitive to use. Common 
 
 ### Title and gameplay instructions
 
+- The title logo is placed at the top left corner of tablet and laptop screens, and in the centre of mobile screens
+  - This is a link to the landing page; users are asked to confirm navigation as it may end an active game
+- Instructions for how to play are placed in the top right corner on tablet and laptop, and centrally underneath the title
+  - Clicking on 'how to play' brings up a modal with instructions
+
+![Title logo and instructions link](assets/readme-images/title-logo.png)
+
+![How to play modal](assets/readme-images/how-to-modal.png)
+
 [Back to contents](#contents)
 
 ### Landing page
 
+- The main anagram display contains the title on loading - this changes throughout but the display box remains in place
+- A brief description and logo image is placed below the anagram display
+  - The same logo image is used as a favicon
+- New game button is the only coloured element to draw user's attention
+- A button group allows users to select the length of word to be used in the new game. The default is set to 5-letter words
+
+![Landing page on mobile](assets/readme-images/landing-page-mob.png)
+
 [Back to contents](#contents)
 
-### Gameplay page
+### Gameplay layout
+
+- When the user clicks on new game, the html is changed to display the gameplay layout
+- The new game button becomes a start game button
+- The options for word-length are hidden
+- When the user hits start game, the title in the anagram display changes to the first anagram of the game
+  - The start game button becomes the end game button which when clicked asks the user for confirmation to end current game
+
+![Gameplay layout on tablet](assets/readme-images/gameplay-layout.png)
 
 ### User input section
 
+- Situated on the left-hand side in tablet and laptop viewports, and centrally in mobile
+- Contains the majority of the interactive elements for the user:
+  - input box, buttons for shuffle, reveal/next, and enter
+- Displays number of remaining lives as heart icons (filled or outline), and the current score
+- The user can enter their guess by clicking enter or hitting the 'Enter' key
+- If the user clicks 'reveal' a confirmation is required, as proceeding loses a life
+
+![User input section](assets/readme-images/user-input.png)
+
+### Shuffle function
+
+### Random Word selection
+
+### Dictionary API
+
 ### Feedback section
 
-### Game over page
+- Situated on the right-hand side in tablet and laptop viewports, and centrally in mobile, underneath the user input section
+- Displays all messages to the user:
+  - When the user clicks 'start game' button or 'next', the game informs the user that an anagram is being generated. A loading gif displays while the APIs are called and the word is shuffled
+
+![Feedback - generating anagram](assets/readme-images/generating.png)
+
+- When the anagram is displayed in the display, the user is invited to 'Guess away!'
+
+![Feedback - guess away](assets/readme-images/guess-away.png)
+
+- If the user makes an incorrect guess, or an invalid guess, they are given relevant feedback
+
+![Feedback - try again](assets/readme-images/try-again.png)
+![Feedback - try again 2](assets/readme-images/try-again2.png)
+
+- If the user guesses correctly, the correct word is confirmed and a short definition is given
+
+![Feedback - correct](assets/readme-images/correct.png)
+
+- If the user chooses to reveal the word, the correct word is displayed with the definition
+- If the dictionary API does not return a short definition, this is communicated to the user, along with a link to the dictionary website, in case the user wants to search up the word manually.
+
+![Feedback - no defintion](assets/readme-images/look-up.png)
+
+### Game over 
+
+- Displays when the user opts to end the game, or when they run out of lives
+- 'Game over' shows in the anagram display
+- The final word, if not already revealed, displays in the feedback section
+- The number of lives is reduced to zero
+- The 'end game' button becomes 'game summary'
+
+![Game over](assets/readme-images/game-over.png)
+
+### Game summary
+
+- Gives a summary of the game just ended
+- The user input section shows a list of the successfully unscrambled words
+- The feedback section shows a list of the unsolved words
+- The 'game summmary' button changes to 'new game' and the options to select word-length are shown
+
+![Game summary](assets/readme-images/summary.png)
+
+### Footer
+
+- Contains a link to an About modal and a copyright
+- Displays in the corners in larger screens, and stacked centrally on mobile
+
+![Footer](assets/readme-images/footer.png)
+![About modal](assets/readme-images/about.png)
+
+
+
+
 
 [Back to contents](#contents)
 
