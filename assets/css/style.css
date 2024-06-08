@@ -220,6 +220,71 @@ i {
     }
 }
 
+/* For mobile devices of 992px width and less in landscape orientation */
+@media only screen and (max-device-width: 992px) and (orientation: landscape) {
+
+    #title-logo,
+    #instructions-link,
+    #about-link {
+        font-size: 100%;
+    }
+
+    #instructions-link {
+        padding-top: 0;
+        padding-right: .5rem;
+    }
+
+    #header-container {
+        padding: .5rem;
+        height: 6vh;
+    }
+
+    #description {
+        font-size: 100%;
+    }
+
+    #mainBtn {
+        font-size: 1rem;
+    }
+
+    #user-input-column {
+        padding: 2px;
+        font-size: 70%;
+    }
+
+    #feedback-column {
+        padding: 5px;
+        font-size: 70%;
+    }
+
+    #enter,
+    #shuffle,
+    #reveal {
+        font-size: .9rem;
+        margin-bottom: 1vh;
+    }
+
+    #copyright {
+        font-size: 80%;
+    }
+
+    #lives i {
+        font-size: 1rem;
+    }
+
+    #score {
+        margin-top: 10px;
+    }
+
+    #btn-group {
+        width: 200px;
+    }
+
+    #btn-group label {
+        font-size: .7rem;
+    }
+}
+
 /* For mobile screens of 768px width and less */
 
 @media screen and (max-width: 768px) {
