@@ -121,7 +121,6 @@ The colour scheme was chosen to give a high contrast and clean effect with splas
 
 - The aim is to make the page as intuitive to use as possible, and to keep the main gameplay buttons and features clearly organised. On tablet and laptop viewports, user input features will be kept on the left of the screen and feedback will be on the right. On mobile devices, the user input and buttons will be just below the displayed word, and feedback below.
 
-
 [Back to contents](#contents)
 
 
@@ -179,9 +178,20 @@ The site is intended to be easy to navigate around and intuitive to use. Common 
 
 ### Shuffle function
 
+- The user can click the shuffle button as many times as desired without penalty
+- The function uses an algorithm to randomly reorder the letters of the word 
+  - It checks that the reorder does not present the actual word before displaying
+
 ### Random Word selection
 
+- When the user clicks 'start game' or 'next' during a game, the game calls a Random Word API to select the next word
+- If the API call fails, the game selects a word from the locally stored wordlists; the user is always able to play
+
 ### Dictionary API
+
+- When the user successfully solves a word, or chooses to reveal a word, a short definition of the word is displayed in the feedback section.
+- The Merriam-Webster Collegiate Dictionary API is called for this information.
+- See [Feedback section](#feedback-section) below for what is displayed in different scenarios.
 
 ### Feedback section
 
