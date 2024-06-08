@@ -57,7 +57,7 @@ As a player of the game, I want:
 5. To be able to shuffle the letters of the anagram
 6. To be able to end the game at any stage
 7. To have helpful feedback if I make an input error
-8. To be protected from accidentally ending the game by clicking on links or the end game button
+8. To be protected from accidentally ending the game
 9. To receive a summary of each game
 10. To have a running total of the words I have solved
 11. To know more about each unscrambled word
