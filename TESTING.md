@@ -138,39 +138,23 @@ The site was tested with [Lighthouse](https://developer.chrome.com/docs/lighthou
 
 The initial test of the home page for mobile device, gave the following result:
 
-![Lighthouse Test 1](/assets/readme-images/lighthhouse-test1.jpg)
+![Lighthouse Test 1](assets/testing-images/lighthouse1.png)
 
-Performance was slow, and well outside of the desired load time for good user experience (about 2.5 seconds).
+As suggested by Lighthouse, the following improvements were made:
+- Accessibility: Improved contrast between font and background of button group - text is now black instead of lighter black used elsewhere
+- SEO: Added meta description
 
-To address this:
-- Images were resized and compressed
-- Custom CSS stylesheet was checked and refined to remove any unnecessary or unused code
-- Call to Google Fonts CDN was refined to ensure that only the fonts used were requested
-- Font Awesome script tag was moved from the head to the end of the body
-- A local version of the Bootstrap CSS, with irrelevant style rules removed, was saved to the assets folder
+After these changes were made, the test results showed improvement:
 
-After these changes, performance was significantly improved:
-
-![Lighthouse Test 2](/assets/readme-images/lighthhouse-test2.jpg)
-
-As suggested by Lighthouse, the following further changes were made:
-
-- Converting background image from jpeg to webp format, reducing file size by a further 75%
-- Adding meta descriptions to improve SEO
-
-After these changes, performance and SEO were much improved.
-
-![Lighthouse Test 3](/assets/readme-images/lighthhouse-test3.jpg)
-
-Following these successful changes, all images across the site have been converted to webp format using [Pixelied](https://pixelied.com/convert/jpg-converter/jpg-to-webp) and meta descriptions have been added to all pages.
+![Lighthouse Test 2](assets/testing-images/lighthouse2.png)
 
 #### Future Improvements
 
 As suggested by the Lighthouse tests, further site improvements could include:
-- Minifying CSS and JS
-- Compressing CSS
+- Minifying JavaScript
+- Serve images in next-gen format
 - Eliminating elements that block the initial render
-- Use of a custom element to improve the load time of the Youtube videos, for example [Lite Youtube Embed](https://github.com/paulirish/lite-youtube-embed/blob/master/readme.md)
+- Serve images with low resolution
 
 [Back to top](#contents)
 
