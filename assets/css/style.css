@@ -28,6 +28,7 @@ h4 {
 
 #gameplay-container {
     height: 45vh;
+    min-height: 250px;
 }
 
 #game-button-container {
@@ -223,7 +224,7 @@ i {
 }
 
 /* For mobile devices of 992px width and less in landscape orientation */
-@media only screen and (max-device-width: 992px) and (orientation: landscape) {
+@media only screen and (max-width: 992px) and (orientation: landscape) {
 
     #title-logo,
     #instructions-link,
@@ -317,7 +318,7 @@ i {
 }
 
 /* For mobile devices of 768px width and less in landscape orientation */
-@media only screen and (max-device-width: 768px) and (orientation: landscape) {
+@media only screen and (max-width: 768px) and (orientation: landscape) {
 
     #title-logo,
     #instructions-link,

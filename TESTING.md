@@ -19,11 +19,11 @@
 
 The HTML code has been validated by the W3C [W3C HTML Validator](https://validator.w3.org/). Some minor errors were identified and have been fixed and retested (see [Bugs: Resolved](#resolved)). All pages now display the following message:
 
-![html ok](/assets/readme-images/html-ok.jpg)
+![html ok](/assets/testing-images/html-ok.png)
 
-The CSS has been validated with [W3C CSS Validator](https://jigsaw.w3.org/css-validator/validator) and no errors or warnings were found. The validator displays the following message:
+The CSS has been validated with [W3C CSS Validator](https://jigsaw.w3.org/css-validator/) and no errors or warnings were found. The validator displays the following message:
 
-![css ok](/assets/readme-images/css-ok.jpg)
+![css ok](/assets/testing-images/css-ok.png)
 
 The JavaScript has been validated by [JSHint]
 
