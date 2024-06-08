@@ -55,7 +55,7 @@ function newGame() {
         worLen = 6;
     } else if (document.getElementById('btn7').checked) {
         worLen = 7;
-    };
+    }
 
     // hides options for word length
     document.getElementById('btn-group').classList.add("d-none");
@@ -192,7 +192,7 @@ async function getWord() {
         return backUp();
         // fdbk.innerHTML = `
         //     <p>Sorry, the random word generator is not working at the moment. Please try again later</p>`;
-    };
+    }
 }
 
 /**
@@ -212,7 +212,7 @@ function backUp() {
         // sevenLtrWds contains 1371 words
         let n = Math.floor(Math.random() * 1372);
         return sevenLtrWds[n].toLowerCase();
-    };
+    }
 }
 
 /**
@@ -237,7 +237,7 @@ async function getWordInfo() {
 
     } catch (error) {
         return 'Sorry, the dictionary is not working at the moment. Try looking up the word in the <a id="dict-link" href="https://www.merriam-webster.com/" target="_blank">Merriam-Webster</a> dictionary.';
-    };
+    }
 }
 
 function getDef(info) {
@@ -251,7 +251,7 @@ function getDef(info) {
             return `The dictionary does not have a short definition for this word. 
                 Try looking it up in the <a id="dict-link" href="https://www.merriam-webster.com/" target="_blank">
                 Merriam-Webster</a> dictionary.`;
-        };
+        }
     } else {
         return info[0].shortdef;
     }
@@ -269,10 +269,10 @@ function revealHandler() {
 
     let message;
     if (lives > 1) {
-        message = 'Revealing the word will lose a life. \nDo you wish to proceed?'
+        message = 'Revealing the word will lose a life. \nDo you wish to proceed?';
     } else {
-        message = 'Revealing the word will lose your last life and end the game. \nDo you wish to proceed?'
-    };
+        message = 'Revealing the word will lose your last life and end the game. \nDo you wish to proceed?';
+    }
 
     if (confirm(`${message}`)) {
         // decrease a life
@@ -324,7 +324,7 @@ function nexBtnHandler(event) {
     if (event.key === "Enter") {
         event.preventDefault();
         nextWordHandler();
-    };
+    }
 }
 
 /**
@@ -335,7 +335,7 @@ function entBtnHandler(event) {
     if (event.key === "Enter") {
         event.preventDefault();
         enterHandler();
-    };
+    }
 }
 
 /**
@@ -354,15 +354,15 @@ function showLives() {
     if (lives < 3) {
         document.getElementById('life3').classList.remove('fa-solid');
         document.getElementById('life3').classList.add('fa-regular');
-    };
+    }
     if (lives < 2) {
         document.getElementById('life2').classList.remove('fa-solid');
         document.getElementById('life2').classList.add('fa-regular');
-    };
+    }
     if (lives < 1) {
         document.getElementById('life1').classList.remove('fa-solid');
         document.getElementById('life1').classList.add('fa-regular');
-    };
+    }
 }
 
 /**
@@ -502,7 +502,7 @@ function checkGuess(g) {
 
             gameOver();
         }
-    };
+    }
 }
 
 /**
@@ -540,7 +540,7 @@ function gameOver() {
     // checks if user has already revealed word
     if (!unsolvedList.includes(currentWord)) {
         unsolvedList.push(currentWord);
-    };
+    }
 
     // displays answer in feedback section and message about no lives
     fdbk.innerHTML = `
@@ -607,7 +607,7 @@ function gameSum() {
             <p>There were ${unsolvedList.length} unsolved words.</p >
             <br>
             <p>UNSOLVED: ${unsolvedList.toString()}</p>`;
-    };
+    }
 }
 
 /**

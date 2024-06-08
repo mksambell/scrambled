@@ -25,7 +25,8 @@ The CSS has been validated with [W3C CSS Validator](https://jigsaw.w3.org/css-va
 
 ![css ok](/assets/testing-images/css-ok.png)
 
-The JavaScript has been validated by [JSHint]
+The JavaScript has been analysed with [JSHint](https://jshint.com/). Apart from detecting some missing semicolons at the end of some statements, and some ES6 usage alerts, no other bugs were found.
+
 
 [Back to top](#contents)
 
@@ -119,20 +120,13 @@ The site functioned as expected on all browsers, in a range of device sizes; fun
 
 ### Resolved
 
-During validation, two minor errors were identified:
-
-1. Footer - copyright character in footer not closed with semicolon
-
-![Bug 1](/assets/readme-images/bug1.jpg)
-
-2. Footer - duplicate ID - an oversight in development - footer-media-link now declared as a class and relevant CSS amended
-
-![Bug 2](/assets/readme-images/bug2.jpg)
+- During validation, a duplicate ID was detected in HTML for the modal pop ups - an oversight in development. The HTML and relevant CSS are now amended.
+- During responsive tests, the URL address bar did not disappear on iOS devices, masking some of the body's content. The issue seems to be related to the way the height of the body content is declared in CSS, and to do with how overflow is dealt with in Bootstrap and iOS. To allow the body to be slightly scrolled and therefore allow the URL bar to disappear, the body's height is set to 101vh for iOS devices. A more elegant and thorough solution may be possible through more refined media queries and specific height declarations.
 
 ### Unresolved
 
-- The contact form, though acting as expected, does not yet post anywhere. This is something that would need to be addressed before going live.
-- The embedded Youtube videos in the Media section significantly effect the load time of the Music page. A potential fix is to use a custom element that loads first, and allows the video to be called when requested. See [Future improvements](#future-improvements) below for a link to an example.
+- Some anagrams can be solved with multiple words, for example the anagram SEERT could be RESET, STEER or TREES, etc. At the moment, if the user does not input the correct word, they will simply be told their guess is incorrect. It would be better either to accept the guess if it is a valid word derived from the anagram, or to tell the user that it is a good guess but not the correct word, and not to dock a life. Either way, the program would need to call another API to return all the valid possibilities of the anagram. The user's guess can then be checked against these as part of the checkGuess function and a relevant action taken.
+- During responsive tests, on some mobile Android devices, when the user tapped on the input box, the pop up keyboard distorted the layout of the page. This is because in Android devices, the keyboard pop up alters the viewport height. If the element heights are set with vh measurements, then this will be interpreted when the viewport is changed. Several solutions were suggested on Stack Overflow, including setting the element heights with absolute measurements, using specific media queries, and attempting to override the default behaviour when the keyboard pops up.
 
 [Back to top](#contents)
 

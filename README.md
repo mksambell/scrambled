@@ -269,8 +269,6 @@ The site is intended to be easy to navigate around and intuitive to use. Common 
 - Option for a limited number of words
   - It may enhance user experience if each game has a limited number of words to solve. For example, if the aim is to solve just ten anagrams, users may be more motivated to keep playing, and to play again, to try to complete the game. 
 
-(bug)- Resolve situation where anagrams have more than one solution
-
 [Back to contents](#contents)
 
 ## 3. Technology used
