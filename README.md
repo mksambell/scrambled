@@ -2,7 +2,8 @@
 
 **scrambled** is an anagram word game in which the player attempts to solve as many anagrams as they can. The player can choose a 5-, 6-, or 7-letter word game. The player has three lives; they lose a life if they make an incorrect guess or opt to reveal the word. A correct guess allows them to proceed to the next word. The game ends when the three lives are up or when the player decides. The player is then given a summary of the game and an invitation to start a new game.
 
-Have a go! [**scrambled**](https://mksambell.github.io/scrambled/)
+Have a go! 
+[**scrambled**](https://mksambell.github.io/scrambled/)
 
 ![Responsive Screenshot](/assets/readme-images/resp-screenshots.png)
 
