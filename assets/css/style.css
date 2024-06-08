@@ -4,6 +4,7 @@ body {
     color: #353535;
     max-width: 1600px;
     margin: 0 auto;
+    overflow: auto;
 }
 
 h1,
@@ -149,6 +150,7 @@ h4 {
     height: 35vh;
     background-color: #8e8e8e;
     font-size: 150%;
+    min-height: 150px;
 }
 
 #feedback-column {

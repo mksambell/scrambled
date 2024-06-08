@@ -106,6 +106,9 @@ function newGame() {
         </div>
     `;
 
+    // ensures gameplay-container element not squeezed in responsive design
+    document.getElementById('gameplay-container').style.minHeight = '310px';
+
     // assign DOM elements to variables for later use
     shufBtn = document.getElementById('shuffle');
     revBtn = document.getElementById('reveal');
