@@ -15,7 +15,17 @@ Have a go! [**scrambled**](https://mksambell.github.io/scrambled/)
     - [Surface](#surface)
 2. [**Features**](#2-features)
 	- [Existing Features](#existing-features)
-		- [Home](#existing-features)
+		- [Title and instructions](#title-and-instructions)
+    - [Landing page](#landing-page)
+    - [Gameplay layout](#gameplay-layout)
+    - [User input section](#user-input-section)
+    - [Shuffle function](#shuffle-function)
+    - [Random word selection](#random-word-selection)
+    - [Dictionary API](#dictionary-api)
+    - [Feedback section](#feedback-section)
+    - [Game over display](#game-over-display)
+    - [Game summary](#game-summary)
+    - [Footer](#footer)
 	- [Future Features](#future-features)
 3. [**Technology used**](#3-technology-used)
 4. [**Testing**](#4-testing)
@@ -93,7 +103,7 @@ The following wireframes were created in [Balsamiq](https://balsamiq.com/) and i
 
 **Game over page**
 
-![Game over](assets/readme-images/game-over.png "Opens Game over page wireframe as png")
+![Game over](assets/readme-images/game-over-layout.png "Opens Game over page wireframe as png")
 
 
 [Back to contents](#contents)
@@ -130,7 +140,7 @@ The site is intended to be easy to navigate around and intuitive to use. Common 
 
 ## Existing Features
 
-### Title and gameplay instructions
+### Title and instructions
 
 - The title logo is placed at the top left corner of tablet and laptop screens, and in the centre of mobile screens
   - This is a link to the landing page; users are asked to confirm navigation as it may end an active game
@@ -182,7 +192,7 @@ The site is intended to be easy to navigate around and intuitive to use. Common 
 - The function uses an algorithm to randomly reorder the letters of the word 
   - It checks that the reorder does not present the actual word before displaying
 
-### Random Word selection
+### Random word selection
 
 - When the user clicks 'start game' or 'next' during a game, the game calls a Random Word API to select the next word
 - If the API call fails, the game selects a word from the locally stored wordlists; the user is always able to play
@@ -208,6 +218,7 @@ The site is intended to be easy to navigate around and intuitive to use. Common 
 - If the user makes an incorrect guess, or an invalid guess, they are given relevant feedback
 
 ![Feedback - try again](assets/readme-images/try-again.png)
+
 ![Feedback - try again 2](assets/readme-images/try-again2.png)
 
 - If the user guesses correctly, the correct word is confirmed and a short definition is given
@@ -219,7 +230,7 @@ The site is intended to be easy to navigate around and intuitive to use. Common 
 
 ![Feedback - no defintion](assets/readme-images/look-up.png)
 
-### Game over 
+### Game over display
 
 - Displays when the user opts to end the game, or when they run out of lives
 - 'Game over' shows in the anagram display
@@ -244,19 +255,19 @@ The site is intended to be easy to navigate around and intuitive to use. Common 
 - Displays in the corners in larger screens, and stacked centrally on mobile
 
 ![Footer](assets/readme-images/footer.png)
+
 ![About modal](assets/readme-images/about.png)
-
-
-
-
 
 [Back to contents](#contents)
 
 ## Future features
 
 - Hint function
+  - Users get three hints to use throughout a game. A hint could reveal one or two of the letters of the answer, randomly selected, or perhaps always give the first letter.
 - Option for timed game
+  - For users who want an extra degree of challenge, and an experience that more closely matches the Countdown conundrum, a timed game could be offered. If users can't solve the anagram in the time given, then a life is docked.
 - Option for a limited number of words
+  - It may enhance user experience if each game has a limited number of words to solve. For example, if the aim is to solve just ten anagrams, users may be more motivated to keep playing, and to play again, to try to complete the game. 
 
 (bug)- Resolve situation where anagrams have more than one solution
 
@@ -267,7 +278,7 @@ The site is intended to be easy to navigate around and intuitive to use. Common 
 - The wireframes were created using [Balsamiq](https://balsamiq.com/)
 - The structure of the site was written in [HTML5](https://html.spec.whatwg.org/)
 - The site was styled using [CSS](https://www.w3.org/Style/CSS/Overview.en.html)
-- JavaScript
+- Interactive elements and functionality were coded in [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 - The site was developed in [Gitpod](https://www.gitpod.io/) using a Github template from [Code Institute](https://github.com/Code-Institute-Org/ci-full-template)
 - [Github](https://github.com/) was used for version control and for hosting
 - [Google Chrome Developer Tools](https://developer.chrome.com/docs/devtools) were used throughout development and for testing
@@ -290,9 +301,9 @@ For full testing details, including code validation, bugs, user story tests and 
   3. Under Source, select the branch to master, then click save.
   4. Once the master branch has been selected, the page will be automatically refreshed with a detailed ribbon display to indicate the successful deployment.
 
-  ![Github deploy](/assets/readme-images/github-deploy.jpg)
+  ![Github deploy](/assets/readme-images/deploy1.png)
 
-  The live link to the repository can be found [here](...)
+  The live link to the repository can be found [here](https://github.com/mksambell/scrambled)
 
 
   ### To fork the repository on Github
@@ -302,7 +313,7 @@ A copy of the GitHub Repository can be made by forking the GitHub account. This 
 1. Log in to GitHub and locate the repository.
 2. On the right hand side of the page inline with the repository name is a button called 'Fork'. Click on the button to create a copy of the original repository in your GitHub Account.
 
-![Github fork](/assets/readme-images/github-fork.jpg)
+![Github fork](/assets/readme-images/deploy2.png)
 
 ### To clone the project
 
@@ -313,7 +324,7 @@ A copy of the GitHub Repository can be made by forking the GitHub account. This 
 5. Type 'git clone', and then paste the URL copied from GitHub.
 6. Press enter and the local clone will be created.
 
-![Github clone](/assets/readme-images/github-clone.jpg)
+![Github clone](/assets/readme-images/deploy3.png)
 
 [Back to contents](#contents)
 
@@ -321,16 +332,19 @@ A copy of the GitHub Repository can be made by forking the GitHub account. This 
 
 ### Code
 
-- Code for random sort function from James Bubb on [Dev Community](https://dev.to/codebubb/how-to-shuffle-an-array-in-javascript-2ikj)
-- Code for modals developed from [Bootstrap] documentation
+- Code used in shuffle function from James Bubb on [Dev Community](https://dev.to/codebubb/how-to-shuffle-an-array-in-javascript-2ikj)
+- Code for modals developed from [Bootstrap](https://getbootstrap.com/docs/4.0/components/modal/) documentation
+- Code for button group developed from [Boostrap](https://getbootstrap.com/docs/4.0/components/button-group/) documentation
 - Code for inserting Abort Controllers to API from ianstormtaylor on [Github](https://github.com/whatwg/fetch/issues/951)
 
 ### Content and media
 
-- Fonts from [Google Fonts](https://fonts.google.com/)
-- Icons from [FontAwesome](https://fontawesome.com/)
+- [Random Word API](https://random-word-api.herokuapp.com/home) by RazorSh4rk called for each new word
+- [Merriam-Webster API](https://dictionaryapi.com/products/api-collegiate-dictionary) called for short dictionary definitions
+- Font from [Google Fonts](https://fonts.google.com/)
+- Heart icons from [FontAwesome](https://fontawesome.com/)
 - Colour palette created with [Coolors](https://coolors.co/)
-- Logo image created by Svitlana Panteley, downloaded from Tangle Vectors by [Vecteezy](https://www.vecteezy.com/free-vector/tangle)
+- Logo image/favicon by Svitlana Panteley, downloaded from Tangle Vectors on [Vecteezy](https://www.vecteezy.com/free-vector/tangle)
 - 5-letter backup word list from charlesreid1 on [Github](https://github.com/charlesreid1/five-letter-words/blob/master/sgb-words.txt)
 - 6-letter backup word list from getify on [Github](https://github.com/getify/dwordly-game/blob/main/six-letter-words.json)
 - 7-letter backup word list from powerlanguage on [Github](https://github.com/powerlanguage/word-lists/blob/master/common-7-letter-words.txt)

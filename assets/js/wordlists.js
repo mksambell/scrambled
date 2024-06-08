@@ -1,3 +1,6 @@
+// contains 3 arrays of backup wordlists, one each with 5-, 6- and 7-letter words
+// referenced in script.js if random word API call fails
+
 // 3094 words
 const fiveLtrWds = [
     "aback",
